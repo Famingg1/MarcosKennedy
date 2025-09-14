@@ -12,16 +12,16 @@ export default function Footer() {
     {
       platform: 'Instagram',
       icon: 'fab fa-instagram',
-      url: '#'
-    },
-    {
-      platform: 'YouTube', 
-      icon: 'fab fa-youtube',
-      url: '#'
+      url: 'https://www.instagram.com/marcoskennedy16'
     },
     {
       platform: 'TikTok',
-      icon: 'fab fa-tiktok', 
+      icon: 'fab fa-tiktok',
+      url: 'https://www.tiktok.com/@marcos.twd'
+    },
+    {
+      platform: 'YouTube',
+      icon: 'fab fa-youtube',
       url: '#'
     },
     {
@@ -60,8 +60,12 @@ export default function Footer() {
                   className="text-gray-400 hover:text-primary transition-colors text-xl"
                   data-testid={`link-footer-social-${social.platform.toLowerCase()}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    console.log(`Footer ${social.platform} clicked`);
+                    if (social.url === '#') {
+                      e.preventDefault();
+                      console.log(`Footer ${social.platform} clicked`);
+                    } else {
+                      window.open(social.url, '_blank');
+                    }
                   }}
                 >
                   <i className={social.icon}></i>

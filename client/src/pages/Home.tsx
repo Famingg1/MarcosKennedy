@@ -232,9 +232,9 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-lg z-50 border-b border-red-900/20">
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-red-500">
+            <div className="text-xl sm:text-2xl font-bold text-red-500">
               MARCOS KENNEDY
             </div>
 
@@ -249,7 +249,8 @@ export default function Home() {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white hover:text-red-500 transition-colors"
+                className="text-white hover:text-red-500 transition-colors p-2 -mr-2"
+                aria-label="Toggle menu"
               >
                 <div className="w-6 h-6 flex flex-col justify-center space-y-1">
                   <div className={`w-full h-0.5 bg-current transition-all ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
@@ -300,31 +301,31 @@ export default function Home() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden bg-black/98 backdrop-blur-lg border-t border-red-900/20">
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-4 sm:px-6 py-4 space-y-2">
               <a
                 href="#home"
-                className="block text-white hover:text-red-500 transition-colors py-2"
+                className="block text-white hover:text-red-500 transition-colors py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t.nav.home}
               </a>
               <a
                 href="#about"
-                className="block text-white hover:text-red-500 transition-colors py-2"
+                className="block text-white hover:text-red-500 transition-colors py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t.nav.about}
               </a>
               <a
                 href="#services"
-                className="block text-white hover:text-red-500 transition-colors py-2"
+                className="block text-white hover:text-red-500 transition-colors py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t.nav.services}
               </a>
               <a
                 href="#gallery"
-                className="block text-white hover:text-red-500 transition-colors py-2"
+                className="block text-white hover:text-red-500 transition-colors py-3 text-lg"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {t.nav.gallery}
@@ -375,8 +376,8 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
-          <h1 className="text-6xl md:text-8xl font-bold mb-6">
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6">
             <span className="bg-gradient-to-r from-white via-red-500 to-white bg-clip-text text-transparent animate-pulse">
               {t.hero.title}
             </span>
@@ -384,18 +385,18 @@ export default function Home() {
             <span className="text-red-500">{t.hero.subtitle}</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
             {t.hero.description}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
+            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
               <div className="flex items-center justify-center space-x-2">
                 <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.hero.bookPerformance}</span>
               </div>
             </button>
-            <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 group">
+            <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group">
               <div className="flex items-center justify-center space-x-2">
                 <Camera className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.hero.watchDemo}</span>
@@ -406,11 +407,11 @@ export default function Home() {
       </section>
 
       {/* About Marcos Kennedy Section */}
-      <section id="about" className="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
+      <section id="about" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.about.title}</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.about.title}</h2>
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
               {t.about.subtitle}
             </p>
           </div>
@@ -422,8 +423,8 @@ export default function Home() {
               </p>
 
               {/* Stats */}
-              <div className="grid grid-cols-2 gap-6 mt-8">
-                <div className="bg-black/50 border border-red-900/30 rounded-xl p-6 text-center hover:border-red-500/50 transition-all animate-float">
+              <div className="grid grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+                <div className="bg-black/50 border border-red-900/30 rounded-xl p-4 sm:p-6 text-center hover:border-red-500/50 transition-all animate-float">
                   <div className="flex items-center justify-center mb-3">
                     <Users className="w-8 h-8 text-red-500" />
                   </div>
@@ -475,17 +476,17 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20 px-6">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.features.title}</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.features.title}</h2>
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
               {t.features.subtitle}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+            <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-6 sm:p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
               <div className="flex items-center justify-center mb-6">
                 <Mic className="w-12 h-12 text-red-500 group-hover:animate-glow" />
               </div>
@@ -493,7 +494,7 @@ export default function Home() {
               <p className="text-gray-300">{t.features.authentic.desc}</p>
             </div>
 
-            <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
+            <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-6 sm:p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
               <div className="flex items-center justify-center mb-6">
                 <Users className="w-12 h-12 text-red-500 group-hover:animate-glow" />
               </div>
@@ -501,7 +502,7 @@ export default function Home() {
               <p className="text-gray-300">{t.features.lookalike.desc}</p>
             </div>
 
-            <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
+            <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-6 sm:p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
               <div className="flex items-center justify-center mb-6">
                 <Star className="w-12 h-12 text-red-500 group-hover:animate-glow" />
               </div>
@@ -513,14 +514,14 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-6 bg-gradient-to-b from-black to-gray-900">
+      <section id="services" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-b from-black to-gray-900">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.services.title}</h2>
-            <p className="text-xl text-gray-300">{t.services.subtitle}</p>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.services.title}</h2>
+            <p className="text-lg sm:text-xl text-gray-300">{t.services.subtitle}</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="bg-black/50 border border-red-900/30 rounded-2xl p-6 hover:border-red-500/50 transition-all group hover:transform hover:scale-105">
               <div className="flex items-center justify-center mb-4">
                 <Mic className="w-10 h-10 text-red-500 group-hover:animate-glow" />
@@ -552,14 +553,14 @@ export default function Home() {
       </section>
 
       {/* Gallery Preview */}
-      <section id="gallery" className="py-20 px-6">
+      <section id="gallery" className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.gallery.title}</h2>
-            <p className="text-xl text-gray-300">{t.gallery.subtitle}</p>
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-red-500 mb-4">{t.gallery.title}</h2>
+            <p className="text-lg sm:text-xl text-gray-300">{t.gallery.subtitle}</p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
             {[
               { type: 'stage', title: 'Live Concert' },
               { type: 'studio', title: 'Studio Session' },
@@ -616,7 +617,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-red-900/20 to-black relative overflow-hidden">
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-r from-red-900/20 to-black relative overflow-hidden">
         {/* Floating stars in CTA */}
         <div className="absolute inset-0 opacity-20">
           {[...Array(15)].map((_, i) => (
@@ -636,19 +637,19 @@ export default function Home() {
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 animate-glow">{t.cta.title}</h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 animate-glow">{t.cta.title}</h2>
+          <p className="text-lg sm:text-xl text-gray-300 mb-6 sm:mb-8">
             {t.cta.subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
+            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
               <div className="flex items-center justify-center space-x-2">
                 <Calendar className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.cta.getQuote}</span>
               </div>
             </button>
-            <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 group">
+            <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group">
               <div className="flex items-center justify-center space-x-2">
                 <Mic className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.cta.call}</span>
@@ -659,12 +660,12 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black border-t border-red-900/30 py-12 px-6">
+      <footer className="bg-black border-t border-red-900/30 py-8 sm:py-12 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <div>
-              <h3 className="text-2xl font-bold text-red-500 mb-4">MARCOS KENNEDY</h3>
-              <p className="text-gray-300">The Ultimate Weeknd Experience</p>
+              <h3 className="text-xl sm:text-2xl font-bold text-red-500 mb-3 sm:mb-4">MARCOS KENNEDY</h3>
+              <p className="text-sm sm:text-base text-gray-300">The Ultimate Weeknd Experience</p>
               <p className="text-sm text-gray-400 mt-2">
                 Authentic tribute performances worldwide
               </p>
@@ -691,12 +692,22 @@ export default function Home() {
             <div>
               <h4 className="text-lg font-semibold text-white mb-4">Follow</h4>
               <div className="flex space-x-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
+                <a
+                  href="https://www.instagram.com/marcoskennedy16"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group"
+                >
                   <Camera className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-                </div>
-                <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
+                </a>
+                <a
+                  href="https://www.tiktok.com/@marcos.twd"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group"
+                >
                   <Play className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-                </div>
+                </a>
                 <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
                   <Mic className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </div>

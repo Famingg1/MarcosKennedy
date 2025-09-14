@@ -28,7 +28,10 @@ export default function Home() {
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/10 to-black"></div>
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\"><circle cx=\"20\" cy=\"20\" r=\"2\" fill=\"%23dc2626\" opacity=\"0.3\"><animate attributeName=\"opacity\" values=\"0.3;1;0.3\" dur=\"3s\" repeatCount=\"indefinite\"/></circle><circle cx=\"80\" cy=\"40\" r=\"1.5\" fill=\"%23dc2626\" opacity=\"0.4\"><animate attributeName=\"opacity\" values=\"0.4;1;0.4\" dur=\"4s\" repeatCount=\"indefinite\"/></circle></svg>')] opacity-30"></div>
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-1/4 left-1/5 w-1 h-1 bg-red-600 rounded-full animate-pulse"></div>
+          <div className="absolute top-2/5 right-1/5 w-0.5 h-0.5 bg-red-600 rounded-full animate-ping"></div>
+        </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
           <h1 className="text-6xl md:text-8xl font-bold mb-6">

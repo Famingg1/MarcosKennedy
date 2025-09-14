@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { ChevronDownIcon, StarIcon } from '@heroicons/react/24/solid';
-import { MicrophoneIcon, UsersIcon, PlayIcon, CameraIcon, CalendarDaysIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { ChevronDown, Star, Mic, Users, Play, Camera, Calendar, Heart } from 'lucide-react';
 
 // Language translations
 const translations = {
@@ -268,7 +267,7 @@ export default function Home() {
                   className="flex items-center space-x-1 text-white hover:text-red-500 transition-colors"
                 >
                   <span className="text-sm font-medium">{currentLang.toUpperCase()}</span>
-                  <ChevronDownIcon className={`w-4 h-4 transition-transform ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-4 h-4 transition-transform ${isLangDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
 
                 {isLangDropdownOpen && (
@@ -355,7 +354,7 @@ export default function Home() {
                 animationDuration: `${2 + Math.random() * 3}s`
               }}
             >
-              <StarIcon className="w-2 h-2 text-red-500 animate-twinkle" />
+              <Star className="w-2 h-2 text-red-500 animate-twinkle" />
             </div>
           ))}
 
@@ -371,7 +370,7 @@ export default function Home() {
                 animationDuration: `${4 + Math.random() * 4}s`
               }}
             >
-              <StarIcon className="w-3 h-3 text-red-400/60" />
+              <Star className="w-3 h-3 text-red-400/60" />
             </div>
           ))}
         </div>
@@ -392,13 +391,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
               <div className="flex items-center justify-center space-x-2">
-                <PlayIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.hero.bookPerformance}</span>
               </div>
             </button>
             <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 group">
               <div className="flex items-center justify-center space-x-2">
-                <CameraIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <Camera className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.hero.watchDemo}</span>
               </div>
             </button>
@@ -426,7 +425,7 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-6 mt-8">
                 <div className="bg-black/50 border border-red-900/30 rounded-xl p-6 text-center hover:border-red-500/50 transition-all animate-float">
                   <div className="flex items-center justify-center mb-3">
-                    <UsersIcon className="w-8 h-8 text-red-500" />
+                    <Users className="w-8 h-8 text-red-500" />
                   </div>
                   <div className="text-2xl font-bold text-red-500">{t.about.stats.followers}</div>
                   <div className="text-sm text-gray-400">Social Media</div>
@@ -434,7 +433,7 @@ export default function Home() {
 
                 <div className="bg-black/50 border border-red-900/30 rounded-xl p-6 text-center hover:border-red-500/50 transition-all animate-float" style={{animationDelay: '0.5s'}}>
                   <div className="flex items-center justify-center mb-3">
-                    <PlayIcon className="w-8 h-8 text-red-500" />
+                    <Play className="w-8 h-8 text-red-500" />
                   </div>
                   <div className="text-2xl font-bold text-red-500">{t.about.stats.performances}</div>
                   <div className="text-sm text-gray-400">Performances</div>
@@ -442,7 +441,7 @@ export default function Home() {
 
                 <div className="bg-black/50 border border-red-900/30 rounded-xl p-6 text-center hover:border-red-500/50 transition-all animate-float" style={{animationDelay: '1s'}}>
                   <div className="flex items-center justify-center mb-3">
-                    <CalendarDaysIcon className="w-8 h-8 text-red-500" />
+                    <Calendar className="w-8 h-8 text-red-500" />
                   </div>
                   <div className="text-2xl font-bold text-red-500">{t.about.stats.years}</div>
                   <div className="text-sm text-gray-400">In Business</div>
@@ -450,7 +449,7 @@ export default function Home() {
 
                 <div className="bg-black/50 border border-red-900/30 rounded-xl p-6 text-center hover:border-red-500/50 transition-all animate-float" style={{animationDelay: '1.5s'}}>
                   <div className="flex items-center justify-center mb-3">
-                    <HeartIcon className="w-8 h-8 text-red-500" />
+                    <Heart className="w-8 h-8 text-red-500" />
                   </div>
                   <div className="text-2xl font-bold text-red-500">{t.about.stats.countries}</div>
                   <div className="text-sm text-gray-400">Countries</div>
@@ -488,7 +487,7 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
               <div className="flex items-center justify-center mb-6">
-                <MicrophoneIcon className="w-12 h-12 text-red-500 group-hover:animate-glow" />
+                <Mic className="w-12 h-12 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-4">{t.features.authentic.title}</h3>
               <p className="text-gray-300">{t.features.authentic.desc}</p>
@@ -496,7 +495,7 @@ export default function Home() {
 
             <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
               <div className="flex items-center justify-center mb-6">
-                <UsersIcon className="w-12 h-12 text-red-500 group-hover:animate-glow" />
+                <Users className="w-12 h-12 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-4">{t.features.lookalike.title}</h3>
               <p className="text-gray-300">{t.features.lookalike.desc}</p>
@@ -504,7 +503,7 @@ export default function Home() {
 
             <div className="bg-gradient-to-b from-gray-900 to-black border border-red-900/30 rounded-2xl p-8 text-center hover:border-red-500/50 transition-all hover:transform hover:scale-105 group">
               <div className="flex items-center justify-center mb-6">
-                <StarIcon className="w-12 h-12 text-red-500 group-hover:animate-glow" />
+                <Star className="w-12 h-12 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-4">{t.features.professional.title}</h3>
               <p className="text-gray-300">{t.features.professional.desc}</p>
@@ -524,7 +523,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-black/50 border border-red-900/30 rounded-2xl p-6 hover:border-red-500/50 transition-all group hover:transform hover:scale-105">
               <div className="flex items-center justify-center mb-4">
-                <MicrophoneIcon className="w-10 h-10 text-red-500 group-hover:animate-glow" />
+                <Mic className="w-10 h-10 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-3">{t.services.live.title}</h3>
               <p className="text-gray-300 mb-4">{t.services.live.desc}</p>
@@ -533,7 +532,7 @@ export default function Home() {
 
             <div className="bg-black/50 border border-red-900/30 rounded-2xl p-6 hover:border-red-500/50 transition-all group hover:transform hover:scale-105">
               <div className="flex items-center justify-center mb-4">
-                <HeartIcon className="w-10 h-10 text-red-500 group-hover:animate-glow" />
+                <Heart className="w-10 h-10 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-3">{t.services.private.title}</h3>
               <p className="text-gray-300 mb-4">{t.services.private.desc}</p>
@@ -542,7 +541,7 @@ export default function Home() {
 
             <div className="bg-black/50 border border-red-900/30 rounded-2xl p-6 hover:border-red-500/50 transition-all group hover:transform hover:scale-105">
               <div className="flex items-center justify-center mb-4">
-                <CameraIcon className="w-10 h-10 text-red-500 group-hover:animate-glow" />
+                <Camera className="w-10 h-10 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-3">{t.services.meetgreet.title}</h3>
               <p className="text-gray-300 mb-4">{t.services.meetgreet.desc}</p>
@@ -578,14 +577,14 @@ export default function Home() {
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
                 <div className="w-full h-full flex flex-col items-center justify-center text-white/80 relative z-10">
                   <div className="mb-3">
-                    {item.type === 'stage' && <MicrophoneIcon className="w-8 h-8 text-red-400" />}
-                    {item.type === 'studio' && <PlayIcon className="w-8 h-8 text-red-400" />}
-                    {item.type === 'event' && <UsersIcon className="w-8 h-8 text-red-400" />}
-                    {item.type === 'meetgreet' && <CameraIcon className="w-8 h-8 text-red-400" />}
-                    {item.type === 'backstage' && <StarIcon className="w-8 h-8 text-red-400" />}
-                    {item.type === 'performance' && <HeartIcon className="w-8 h-8 text-red-400" />}
-                    {item.type === 'crowd' && <UsersIcon className="w-8 h-8 text-red-400" />}
-                    {item.type === 'setup' && <CalendarDaysIcon className="w-8 h-8 text-red-400" />}
+                    {item.type === 'stage' && <Mic className="w-8 h-8 text-red-400" />}
+                    {item.type === 'studio' && <Play className="w-8 h-8 text-red-400" />}
+                    {item.type === 'event' && <Users className="w-8 h-8 text-red-400" />}
+                    {item.type === 'meetgreet' && <Camera className="w-8 h-8 text-red-400" />}
+                    {item.type === 'backstage' && <Star className="w-8 h-8 text-red-400" />}
+                    {item.type === 'performance' && <Heart className="w-8 h-8 text-red-400" />}
+                    {item.type === 'crowd' && <Users className="w-8 h-8 text-red-400" />}
+                    {item.type === 'setup' && <Calendar className="w-8 h-8 text-red-400" />}
                   </div>
                   <div className="text-sm font-medium text-center px-2">{item.title}</div>
                   <div className="text-xs text-gray-300 mt-1">Marcos Kennedy</div>
@@ -596,7 +595,7 @@ export default function Home() {
                 {['studio', 'stage', 'performance'].includes(item.type) && (
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <div className="w-12 h-12 bg-red-500/80 rounded-full flex items-center justify-center">
-                      <PlayIcon className="w-6 h-6 text-white ml-1" />
+                      <Play className="w-6 h-6 text-white ml-1" />
                     </div>
                   </div>
                 )}
@@ -608,7 +607,7 @@ export default function Home() {
           <div className="text-center mt-12">
             <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 group">
               <div className="flex items-center justify-center space-x-2">
-                <CameraIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <Camera className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>View Full Gallery</span>
               </div>
             </button>
@@ -631,7 +630,7 @@ export default function Home() {
                 animationDuration: `${3 + Math.random() * 2}s`
               }}
             >
-              <StarIcon className="w-1 h-1 text-red-500" />
+              <Star className="w-1 h-1 text-red-500" />
             </div>
           ))}
         </div>
@@ -645,13 +644,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
               <div className="flex items-center justify-center space-x-2">
-                <CalendarDaysIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <Calendar className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.cta.getQuote}</span>
               </div>
             </button>
             <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 group">
               <div className="flex items-center justify-center space-x-2">
-                <MicrophoneIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                <Mic className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.cta.call}</span>
               </div>
             </button>
@@ -693,16 +692,16 @@ export default function Home() {
               <h4 className="text-lg font-semibold text-white mb-4">Follow</h4>
               <div className="flex space-x-4">
                 <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
-                  <CameraIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                  <Camera className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </div>
                 <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
-                  <PlayIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                  <Play className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </div>
                 <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
-                  <MicrophoneIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                  <Mic className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </div>
                 <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
-                  <HeartIcon className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
+                  <Heart className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </div>
               </div>
             </div>

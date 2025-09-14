@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macros Kennedy - The Ultimate Weeknd Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #dc143c;
+            text-shadow: 0 0 10px rgba(220, 20, 60, 0.5);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #dc143c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: #dc143c;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #dc143c;
+            transition: 0.3s;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(220, 20, 60, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(220, 20, 60, 0.3) 0%, transparent 50%),
+                linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23dc143c" opacity="0.3"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="40" r="1.5" fill="%23dc143c" opacity="0.4"><animate attributeName="opacity" values="0.4;1;0.4" dur="4s" repeatCount="indefinite"/></circle><circle cx="40" cy="80" r="1" fill="%23dc143c" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/></circle></svg>') repeat;
+            animation: sparkle 20s linear infinite;
+        }
+
+        @keyframes sparkle {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-100px) translateY(-100px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ffffff, #dc143c, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite alternate;
+            letter-spacing: 2px;
+        }
+
+        @keyframes glow {
+            0% { filter: drop-shadow(0 0 10px rgba(220, 20, 60, 0.8)); }
+            100% { filter: drop-shadow(0 0 30px rgba(220, 20, 60, 1)) drop-shadow(0 0 50px rgba(220, 20, 60, 0.8)); }
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: #ccc;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #dc143c, #ff1744);
+            color: white;
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid #dc143c;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.6);
+        }
+
+        .btn-secondary:hover {
+            background: #dc143c;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #dc143c;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #dc143c, #ff1744);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            color: #dc143c;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(220, 20, 60, 0.3);
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #dc143c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .placeholder-img::before {
+            content: '📸';
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            background: linear-gradient(135deg, #1a1a1a, #dc143c);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.5);
+        }
+
+        .gallery-item::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 20px;
+            font-weight: bold;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            transform: translateY(0);
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(220, 20, 60, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.1), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #dc143c;
+            box-shadow: 0 20px 40px rgba(220, 20, 60, 0.4);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            color: #dc143c;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .service-card .price {
+            color: #dc143c;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        /* Performance Details */
+        .performance-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(26, 26, 26, 0.5);
+            border-radius: 15px;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .feature-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-item h4 {
+            color: #dc143c;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Form */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 50px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(220, 20, 60, 0.1));
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .contact-info h3 {
+            color: #dc143c;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .contact-item .icon {
+            font-size: 1.5rem;
+            color: #dc143c;
+        }
+
+        .form-container {
+            background: rgba(26, 26, 26, 0.5);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #dc143c;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(220, 20, 60, 0.3);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #dc143c;
+            box-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
+        }
+
+        .form-group select option {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #dc143c, #ff1744);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 2px solid #dc143c;
+            margin-top: 50px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 50px;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .services-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-features {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .service-card,
+            .contact-info,
+            .form-container {
+                padding: 25px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(220, 20, 60, 0.3);
+            border-top: 3px solid #dc143c;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">MACROS KENNEDY</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">Over Macros</a></li>
+                <li><a href="#" onclick="showPage('gallery')">Galerij</a></li>
+                <li><a href="#" onclick="showPage('services')">Services</a></li>
+                <li><a href="#" onclick="showPage('performances')">Optredens</a></li>
+                <li><a href="#" onclick="showPage('contact')">Boeken</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div class="page active" id="home">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>MACROS KENNEDY</h1>
+                <p class="tagline">The Ultimate Weeknd Experience</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="showPage('contact')">BOEK NU</a>
+                    <a href="#" class="btn btn-secondary" onclick="showPage('about')">LEER MEER</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Info Section -->
+        <section class="section">
+            <div class="container">
+                <div class="performance-features">
+                    <div class="feature-item">
+                        <span class="icon">🎤</span>
+                        <h4>Live Performances</h4>
+                        <p>Authentieke The Weeknd shows</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🎭</span>
+                        <h4>Look-Alike</h4>
+                        <p>Perfecte gelijkenis</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🌟</span>
+                        <h4>Professioneel</h4>
+                        <p>Ervaren performer</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">📅</span>
+                        <h4>Beschikbaar</h4>
+                        <p>Voor alle evenementen</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div class="page" id="about">
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h2 class="section-title">Over Macros Kennedy</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>Macros Kennedy is dé ultieme The Weeknd look-alike en tribute artist die de ongeëvenaarde energie, stijl en charisma van Abel Tesfaye naar jouw evenement brengt.</p>
+                        
+                        <h3>🎭 Perfecte Gelijkenis</h3>
+                        <p>Met zijn natuurlijke gelijkenis en aandacht voor detail zorgt Macros Kennedy voor een authentieke The Weeknd experience die je gasten versteld zal doen staan.</p>
+                        
+                        <h3>🎵 Muzikale Expertise</h3>
+                        <p>Van "Can't Feel My Face" tot "Blinding Lights" - Macros Kennedy beheerst het complete repertoire van The Weeknd en brengt elke hit met dezelfde intensiteit en passie.</p>
+                        
+                        <h3>⭐ Ervaring</h3>
+                        <ul style="margin-top: 15px; padding-left: 20px;">
+                            <li>[X] jaar ervaring als The Weeknd tribute artist</li>
+                            <li>[X]+ succesvolle optredens</li>
+                            <li>Opgetreden in [voorbeeldvenues]</li>
+                            <li>Klanten waaronder [voorbeeldklanten]</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <div class="placeholder-img">
+                            <div>
+                                <div>Professional Headshot</div>
+                                <small>Macros Kennedy in actie</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- GALLERY PAGE -->
+    <div class="page" id="gallery">
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h2 class="section-title">Foto & Video Galerij</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-title="Live Performance">
+                        <div class="placeholder-img">
+                            <div>📸<br>Live Show<br>Foto</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-title="Studio Shoot">
+                        <div class="placeholder-img">
+                            <div>📷<br>Professional<br>Portrait</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-title="Event Highlight">
+                        <div class="placeholder-img">
+                            <div>🎬<br>Event<br>Video</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-title="Behind the Scenes">
+                        <div class="placeholder-img">
+                            <div>🎭<br>Behind<br>Scenes</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-title="Costume Details">
+                        <div class="placeholder-img">
+                            <div>👔<br>Costume<br>Details</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-title="Fan Reactions">
+                        <div class="placeholder-img">
+                            <div>🤳<br>Fan<br>Photos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div class="page" id="services">
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h2 class="section-title">Services & Packages</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <span class="icon">🌟</span>
+                        <h3>VIP Package</h3>
+                        <p>Complete ervaring met extended performance, meet & greet, professionele fotografie en exclusieve merchandise.</p>
+                        <div class="price">Vanaf €[XXXX]</div>
+                        <br>
+                        <small>
+                            • Extended [X] minuten show<br>
+                            • VIP meet & greet ([X] min)<br>
+                            • Professionele fotograaf<br>
+                            • Exclusieve merchandise
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PERFORMANCES PAGE -->
+    <div class="page" id="performances">
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h2 class="section-title">Performance Details</h2>
+                
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h3>🎵 Repertoire</h3>
+                        <p><strong>Greatest Hits Setlist:</strong></p>
+                        <ul style="margin: 15px 0; padding-left: 20px; line-height: 2;">
+                            <li>Blinding Lights</li>
+                            <li>Can't Feel My Face</li>
+                            <li>The Hills</li>
+                            <li>Starboy</li>
+                            <li>I Feel It Coming</li>
+                            <li>Earned It</li>
+                            <li>Save Your Tears</li>
+                            <li>After Hours</li>
+                            <li>Heartless</li>
+                            <li>Call Out My Name</li>
+                        </ul>
+                        <p><em>+ Meer dan [X] andere songs beschikbaar</em></p>
+
+                        <h3>🎭 Performance Stijl</h3>
+                        <p>• Authentieke zangstijl en bewegingen<br>
+                        • Iconische outfits en styling<br>
+                        • Professionele stage presence<br>
+                        • Interactie met het publiek<br>
+                        • High-energy performance</p>
+                    </div>
+                    <div class="about-image">
+                        <div class="placeholder-img">
+                            <div>
+                                <div>Performance Video</div>
+                                <small>Bekijk Macros in actie</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="performance-features">
+                    <div class="feature-item">
+                        <span class="icon">⏱️</span>
+                        <h4>Performance Duur</h4>
+                        <p>15-60 minuten<br><small>Aanpasbaar per event</small></p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🎤</span>
+                        <h4>Live Vocals</h4>
+                        <p>Authentieke live zang<br><small>Backing tracks beschikbaar</small></p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">🎵</span>
+                        <h4>Muziek Setup</h4>
+                        <p>Professioneel geluidssysteem<br><small>Eigen apparatuur</small></p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">💡</span>
+                        <h4>Podiumverlichting</h4>
+                        <p>Theatrale lichtshow<br><small>Optioneel beschikbaar</small></p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">👔</span>
+                        <h4>Costume Changes</h4>
+                        <p>[X] Verschillende outfits<br><small>Iconische The Weeknd looks</small></p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon">📍</span>
+                        <h4>Locatie</h4>
+                        <p>Nederland & België<br><small>Internationaal op aanvraag</small></p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px; text-align: center; background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(220, 20, 60, 0.1)); padding: 40px; border-radius: 20px; border: 1px solid rgba(220, 20, 60, 0.2);">
+                    <h3 style="color: #dc143c; margin-bottom: 20px;">🏆 Testimonials</h3>
+                    <blockquote style="font-style: italic; font-size: 1.2rem; margin: 20px 0;">
+                        "Macros Kennedy was absolutely incredible! Our guests couldn't believe how much he looked and sounded like The Weeknd. The performance was flawless!"
+                    </blockquote>
+                    <cite style="color: #dc143c;">— [Klant Naam], [Event Type]</cite>
+                    
+                    <blockquote style="font-style: italic; font-size: 1.2rem; margin: 20px 0;">
+                        "Professional, punctual, and phenomenal performance. Macros made our corporate event unforgettable. Highly recommended!"
+                    </blockquote>
+                    <cite style="color: #dc143c;">— [Klant Naam], [Bedrijf]</cite>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div class="page" id="contact">
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <h2 class="section-title">Boek Macros Kennedy</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Contact Informatie</h3>
+                        
+                        <div class="contact-item">
+                            <span class="icon">📧</span>
+                            <div>
+                                <strong>Email:</strong><br>
+                                info@macroskennedy.com<br>
+                                bookings@macroskennedy.com
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="icon">📱</span>
+                            <div>
+                                <strong>Telefoon:</strong><br>
+                                +31 6 [XX XX XX XX]<br>
+                                <small>9:00 - 18:00 (Ma-Vr)</small>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="icon">💬</span>
+                            <div>
+                                <strong>WhatsApp:</strong><br>
+                                +31 6 [XX XX XX XX]<br>
+                                <small>Snelle response</small>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="icon">📍</span>
+                            <div>
+                                <strong>Locatie:</strong><br>
+                                [Stad, Nederland]<br>
+                                <small>Reist door NL & België</small>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="social-link" title="Instagram">📷</a>
+                            <a href="#" class="social-link" title="TikTok">🎵</a>
+                            <a href="#" class="social-link" title="YouTube">📺</a>
+                            <a href="#" class="social-link" title="Facebook">👥</a>
+                        </div>
+
+                        <div style="margin-top: 30px; padding: 20px; background: rgba(220, 20, 60, 0.1); border-radius: 10px; border: 1px solid rgba(220, 20, 60, 0.3);">
+                            <h4 style="color: #dc143c; margin-bottom: 10px;">⚡ Snelle Response</h4>
+                            <p><small>Wij reageren binnen 24 uur op alle booking aanvragen. Voor spoedeisende boekingen kun je direct bellen of WhatsApp sturen.</small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-container">
+                        <h3 style="color: #dc143c; margin-bottom: 25px;">Booking Aanvraag</h3>
+                        <form id="booking-form">
+                            <div class="form-group">
+                                <label for="name">Naam *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company">Bedrijf/Organisatie</label>
+                                <input type="text" id="company" name="company">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Telefoon *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="event-date">Event Datum *</label>
+                                <input type="date" id="event-date" name="event-date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="event-time">Gewenste Tijd</label>
+                                <input type="time" id="event-time" name="event-time">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="event-type">Type Evenement *</label>
+                                <select id="event-type" name="event-type" required>
+                                    <option value="">Selecteer type evenement</option>
+                                    <option value="wedding">Bruiloft</option>
+                                    <option value="birthday">Verjaardag</option>
+                                    <option value="corporate">Bedrijfsfeest</option>
+                                    <option value="festival">Festival</option>
+                                    <option value="club">Club/Venue</option>
+                                    <option value="private">Privé feest</option>
+                                    <option value="media">Media/TV</option>
+                                    <option value="other">Anders</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="location">Locatie *</label>
+                                <input type="text" id="location" name="location" placeholder="Stad, venue naam" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="guests">Aantal Gasten</label>
+                                <input type="number" id="guests" name="guests" placeholder="Bijv. 150">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="service">Gewenste Service *</label>
+                                <select id="service" name="service" required>
+                                    <option value="">Selecteer service</option>
+                                    <option value="live-performance">Live Performance</option>
+                                    <option value="private-event">Private Event</option>
+                                    <option value="meet-greet">Meet & Greet</option>
+                                    <option value="media">Media & Promotie</option>
+                                    <option value="dj-live">DJ Set + Live</option>
+                                    <option value="vip-package">VIP Package</option>
+                                    <option value="custom">Maatwerk</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="duration">Gewenste Duur</label>
+                                <select id="duration" name="duration">
+                                    <option value="">Selecteer duur</option>
+                                    <option value="15min">15 minuten</option>
+                                    <option value="30min">30 minuten</option>
+                                    <option value="45min">45 minuten</option>
+                                    <option value="60min">1 uur</option>
+                                    <option value="90min">1,5 uur</option>
+                                    <option value="custom">Anders</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget">Budget Range</label>
+                                <select id="budget" name="budget">
+                                    <option value="">Selecteer budget</option>
+                                    <option value="under-1000">Onder €1.000</option>
+                                    <option value="1000-2500">€1.000 - €2.500</option>
+                                    <option value="2500-5000">€2.500 - €5.000</option>
+                                    <option value="5000-plus">€5.000+</option>
+                                    <option value="discuss">Bespreekbaar</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Aanvullende Informatie</label>
+                                <textarea id="message" name="message" rows="5" placeholder="Vertel ons meer over je evenement, speciale wensen, technische requirements, etc."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" required style="width: auto; margin-right: 10px;">
+                                    Ik ga akkoord met de <a href="#" style="color: #dc143c;">algemene voorwaarden</a> *
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                VERZEND BOOKING AANVRAAG
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 50px; text-align: center; background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), rgba(220, 20, 60, 0.1)); padding: 40px; border-radius: 20px; border: 1px solid rgba(220, 20, 60, 0.2);">
+                    <h3 style="color: #dc143c; margin-bottom: 20px;">📅 Beschikbaarheid & Planning</h3>
+                    <p>Macros Kennedy is beschikbaar voor boekingen door heel Nederland en België. Voor internationale optredens sturen wij graag een offerte op maat.</p>
+                    <br>
+                    <p><strong>Minimale boekingsperiode:</strong> [X] dagen van tevoren<br>
+                    <strong>Piekperiodes:</strong> Weekenden, feestdagen en zomermaanden<br>
+                    <strong>Reiskosten:</strong> Inbegrepen binnen [X]km van [Stad]</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Macros Kennedy - The Ultimate Weeknd Experience. Alle rechten voorbehouden.</p>
+            <p>Voor directe boekingen: <a href="mailto:info@macroskennedy.com" style="color: #dc143c;">info@macroskennedy.com</a> | Tel: +31 6 [XX XX XX XX]</p>
+            <br>
+            <div class="social-links">
+                <a href="#" class="social-link" title="Instagram">📷</a>
+                <a href="#" class="social-link" title="TikTok">🎵</a>
+                <a href="#" class="social-link" title="YouTube">📺</a>
+                <a href="#" class="social-link" title="Facebook">👥</a>
+                <a href="#" class="social-link" title="LinkedIn">💼</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('fade-out');
+            }, 1000);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Close mobile menu
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update URL hash
+            window.location.hash = pageId;
+        }
+
+        // Handle browser back/forward
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            }
+        });
+
+        // Initialize page from URL hash
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            }
+        });
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href.startsWith('#contact') || href.startsWith('#about')) {
+                    return; // Let the showPage function handle these
+                }
+                
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'VERZENDEN...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                alert('🎉 Bedankt voor je booking aanvraag!\n\nWe hebben je aanvraag ontvangen en nemen binnen 24 uur contact met je op met een persoonlijke offerte.\n\nVoor spoedeisende vragen kun je direct bellen of WhatsApp sturen naar +31 6 [XX XX XX XX].');
+                
+                // Reset form
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Dynamic navigation background on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(0, 0, 0, 0.98)';
+                nav.style.backdropFilter = 'blur(20px)';
+            } else {
+                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+                nav.style.backdropFilter = 'blur(15px)';
+            }
+        });
+
+        // Gallery item interactions
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.getAttribute('data-title');
+                alert(`🖼️ ${title}\n\n[Hier zou een lightbox modal openen met de volledige foto/video]`);
+            });
+        });
+
+        // Service card interactions
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const service = this.querySelector('h3').textContent;
+                if (confirm(`Interesse in ${service}?\n\nWil je direct naar het booking formulier gaan?`)) {
+                    showPage('contact');
+                    setTimeout(() => {
+                        document.getElementById('service').value = service.toLowerCase().replace(/\s+/g, '-').replace(/&/g, '');
+                    }, 100);
+                }
+            });
+        });
+
+        // Auto-fill current date + 30 days as minimum booking date
+        const eventDateInput = document.getElementById('event-date');
+        if (eventDateInput) {
+            const today = new Date();
+            const minDate = new Date(today.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 days from now
+            eventDateInput.min = minDate.toISOString().split('T')[0];
+        }
+
+        // Dynamic pricing hints
+        const serviceSelect = document.getElementById('service');
+        const budgetSelect = document.getElementById('budget');
+        
+        if (serviceSelect && budgetSelect) {
+            serviceSelect.addEventListener('change', function() {
+                const selectedService = this.value;
+                let suggestedBudget = '';
+                
+                switch(selectedService) {
+                    case 'meet-greet':
+                        suggestedBudget = 'under-1000';
+                        break;
+                    case 'live-performance':
+                    case 'private-event':
+                        suggestedBudget = '1000-2500';
+                        break;
+                    case 'dj-live':
+                        suggestedBudget = '2500-5000';
+                        break;
+                    case 'vip-package':
+                        suggestedBudget = '5000-plus';
+                        break;
+                }
+                
+                if (suggestedBudget && !budgetSelect.value) {
+                    budgetSelect.value = suggestedBudget;
+                }
+            });
+        }
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Add scroll animations to elements
+        document.querySelectorAll('.service-card, .feature-item, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+                        <span class="icon">🎤</span>
+                        <h3>Live Performance</h3>
+                        <p>Volledige The Weeknd tribute show met alle hits en iconische moves. Inclusief professionele geluidsapparatuur en podiumverlichting.</p>
+                        <div class="price">Vanaf €[XXXX]</div>
+                        <br>
+                        <small>
+                            • [X] minuten optreden<br>
+                            • Eigen geluid & licht<br>
+                            • [X] grootste hits<br>
+                            • Meet & greet mogelijk
+                        </small>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">🎉</span>
+                        <h3>Private Events</h3>
+                        <p>Exclusieve optredens voor bruiloften, verjaardagen, bedrijfsfeesten en andere speciale gelegenheden.</p>
+                        <div class="price">Vanaf €[XXXX]</div>
+                        <br>
+                        <small>
+                            • Gepersonaliseerde setlist<br>
+                            • Interactie met gasten<br>
+                            • Flexibele duur<br>
+                            • Reiskosten inbegrepen ([X]km)
+                        </small>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">📸</span>
+                        <h3>Meet & Greet</h3>
+                        <p>Persoonlijke ontmoetingen, foto sessies en exclusieve momenten met jouw gasten.</p>
+                        <div class="price">Vanaf €[XXX]</div>
+                        <br>
+                        <small>
+                            • [X] minuten meet & greet<br>
+                            • Onbeperkt foto's<br>
+                            • Handtekeningen<br>
+                            • Perfecte toevoeging aan elk event
+                        </small>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">🎬</span>
+                        <h3>Media & Promotie</h3>
+                        <p>Professionele opnames, commercials, muziekvideo's en promotionele content.</p>
+                        <div class="price">Op aanvraag</div>
+                        <br>
+                        <small>
+                            • TV/Film appearances<br>
+                            • Commercials<br>
+                            • Social media content<br>
+                            • Fotoshoots
+                        </small>
+                    </div>
+                    <div class="service-card">
+                        <span class="icon">🎵</span>
+                        <h3>DJ Set + Live</h3>
+                        <p>Combinatie van DJ set met live The Weeknd performance voor de ultieme party experience.</p>
+                        <div class="price">Vanaf €[XXXX]</div>
+                        <br>
+                        <small>
+                            • [X] uur DJ set<br>
+                            • [X] minuten live performance<br>
+                            • The Weeknd + R&B classics<br>
+                            • Naadloze overgang
+                        </small>
+                    </div>
+                    <div class="service-card">

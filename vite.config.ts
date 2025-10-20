@@ -30,8 +30,9 @@ export default defineConfig({
   },
   server: {
     fs: {
-      strict: true,
-      deny: ["**/.*"],
+      strict: false,
+      allow: [".."],
     },
   },
+  assetsInclude: ["**/*.JPG", "**/*.PNG", "**/*.MOV", "**/*.HEIC", "**/*.JPEG", "**/*.jpg", "**/*.png", "**/*.mov"],
 });

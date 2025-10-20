@@ -1,5 +1,44 @@
 import { useState } from 'react';
+import { useLocation } from 'wouter';
 import { ChevronDown, Star, Mic, Users, Play, Camera, Calendar, Heart } from 'lucide-react';
+
+// Import all photos and videos
+import img0210 from "@assets/Foto's en video's/IMG_0210.JPG";
+import img1415 from "@assets/Foto's en video's/IMG_1415.PNG";
+import img2210 from "@assets/Foto's en video's/IMG_2210.JPG";
+import img2211 from "@assets/Foto's en video's/IMG_2211.JPG";
+import img2607 from "@assets/Foto's en video's/IMG_2607.JPG";
+import img2608 from "@assets/Foto's en video's/IMG_2608.JPG";
+import img2762 from "@assets/Foto's en video's/IMG_2762.JPG";
+import img3112 from "@assets/Foto's en video's/IMG_3112.JPG";
+import img3118 from "@assets/Foto's en video's/IMG_3118.JPG";
+import img3125 from "@assets/Foto's en video's/IMG_3125.JPG";
+import img3127 from "@assets/Foto's en video's/IMG_3127.JPG";
+import img3130 from "@assets/Foto's en video's/IMG_3130.JPG";
+import img4028 from "@assets/Foto's en video's/IMG_4028.JPG";
+import img4148 from "@assets/Foto's en video's/IMG_4148.JPG";
+import img4541 from "@assets/Foto's en video's/IMG_4541.JPG";
+import img4583 from "@assets/Foto's en video's/IMG_4583.JPG";
+import img4598 from "@assets/Foto's en video's/IMG_4598.JPG";
+import img4613 from "@assets/Foto's en video's/IMG_4613.JPG";
+import img4615 from "@assets/Foto's en video's/IMG_4615.JPG";
+import img4892 from "@assets/Foto's en video's/IMG_4892.JPG";
+import img4893 from "@assets/Foto's en video's/IMG_4893.PNG";
+import img4936 from "@assets/Foto's en video's/IMG_4936.JPG";
+import img5114 from "@assets/Foto's en video's/IMG_5114.JPG";
+import img5115 from "@assets/Foto's en video's/IMG_5115.JPG";
+import img5117 from "@assets/Foto's en video's/IMG_5117.JPG";
+import img5429 from "@assets/Foto's en video's/IMG_5429.JPEG.jpg";
+import img8121 from "@assets/Foto's en video's/IMG_8121.JPG";
+import video2691 from "@assets/Foto's en video's/IMG_2691.MOV";
+import video3401 from "@assets/Foto's en video's/IMG_3401.MOV";
+import video3522 from "@assets/Foto's en video's/IMG_3522.MOV";
+import video5030 from "@assets/Foto's en video's/IMG_5030.MOV";
+import video8754 from "@assets/Foto's en video's/IMG_8754.MOV";
+import video8755 from "@assets/Foto's en video's/IMG_8755.MOV";
+import video8756 from "@assets/Foto's en video's/IMG_8756.MOV";
+import video8757 from "@assets/Foto's en video's/IMG_8757.MOV";
+import video9166 from "@assets/Foto's en video's/IMG_9166.MOV";
 
 // Language translations
 const translations = {
@@ -50,18 +89,15 @@ const translations = {
       subtitle: "Tailored performances for every occasion",
       live: {
         title: "Live Performances",
-        desc: "Full tribute shows with The Weeknd's greatest hits",
-        price: "From €1,500"
+        desc: "Full tribute shows with The Weeknd's greatest hits"
       },
       private: {
         title: "Private Events",
-        desc: "Weddings, parties, and corporate functions",
-        price: "From €1,200"
+        desc: "Weddings, parties, and corporate functions"
       },
       meetgreet: {
         title: "Meet & Greet",
-        desc: "Personal interactions and photo opportunities",
-        price: "From €500"
+        desc: "Personal interactions and photo opportunities"
       }
     },
     gallery: {
@@ -69,10 +105,10 @@ const translations = {
       subtitle: "Professional photos and videos from recent shows"
     },
     cta: {
-      title: "Ready to Book?",
-      subtitle: "Contact us today to discuss your event and get a personalized quote",
-      getQuote: "Get Quote",
-      call: "Call: +31 6 XX XX XX XX"
+      title: "Ready to book?",
+      subtitle: "Contact us today to discuss your event and get a personalized quote.",
+      getQuote: "Get quote",
+      call: "Call"
     }
   },
   nl: {
@@ -122,18 +158,15 @@ const translations = {
       subtitle: "Op maat gemaakte optredens voor elke gelegenheid",
       live: {
         title: "Live Optredens",
-        desc: "Volledige tribute shows met The Weeknd's grootste hits",
-        price: "Vanaf €1.500"
+        desc: "Volledige tribute shows met The Weeknd's grootste hits"
       },
       private: {
         title: "Privé Evenementen",
-        desc: "Bruiloften, feesten en bedrijfsfuncties",
-        price: "Vanaf €1.200"
+        desc: "Bruiloften, feesten en bedrijfsfuncties"
       },
       meetgreet: {
         title: "Meet & Greet",
-        desc: "Persoonlijke interacties en foto mogelijkheden",
-        price: "Vanaf €500"
+        desc: "Persoonlijke interacties en foto mogelijkheden"
       }
     },
     gallery: {
@@ -141,10 +174,10 @@ const translations = {
       subtitle: "Professionele foto's en video's van recente shows"
     },
     cta: {
-      title: "Klaar om te Boeken?",
-      subtitle: "Neem vandaag contact met ons op om je evenement te bespreken en een persoonlijke offerte te krijgen",
-      getQuote: "Krijg Offerte",
-      call: "Bel: +31 6 XX XX XX XX"
+      title: "Klaar om te boeken?",
+      subtitle: "Neem vandaag contact met ons op om je evenement te bespreken en een persoonlijke offerte te krijgen.",
+      getQuote: "Krijg offerte",
+      call: "Bel"
     }
   },
   pt: {
@@ -194,18 +227,15 @@ const translations = {
       subtitle: "Performances sob medida para cada ocasião",
       live: {
         title: "Performances Ao Vivo",
-        desc: "Shows tribute completos com os maiores hits do The Weeknd",
-        price: "A partir de €1.500"
+        desc: "Shows tribute completos com os maiores hits do The Weeknd"
       },
       private: {
         title: "Eventos Privados",
-        desc: "Casamentos, festas e funções corporativas",
-        price: "A partir de €1.200"
+        desc: "Casamentos, festas e funções corporativas"
       },
       meetgreet: {
         title: "Meet & Greet",
-        desc: "Interações pessoais e oportunidades de fotos",
-        price: "A partir de €500"
+        desc: "Interações pessoais e oportunidades de fotos"
       }
     },
     gallery: {
@@ -213,20 +243,63 @@ const translations = {
       subtitle: "Fotos e vídeos profissionais de shows recentes"
     },
     cta: {
-      title: "Pronto para Reservar?",
-      subtitle: "Entre em contato conosco hoje para discutir seu evento e obter uma cotação personalizada",
-      getQuote: "Obter Cotação",
-      call: "Ligue: +31 6 XX XX XX XX"
+      title: "Pronto para reservar?",
+      subtitle: "Entre em contato conosco hoje para discutir seu evento e obter uma cotação personalizada.",
+      getQuote: "Obter cotação",
+      call: "Ligue"
     }
   }
 };
 
 export default function Home() {
+  const [, navigate] = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('en');
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', title: string} | null>(null);
 
   const t = translations[currentLang as keyof typeof translations];
+
+  const allGalleryItems = [
+    { src: video8754, type: 'video' as const, title: 'Live Concert' },
+    { src: img0210, type: 'image' as const, title: 'Stage Performance' },
+    { src: video8755, type: 'video' as const, title: 'Event Highlight' },
+    { src: img4541, type: 'image' as const, title: 'Professional Portrait' },
+    { src: video8756, type: 'video' as const, title: 'Performance Video' },
+    { src: img4028, type: 'image' as const, title: 'Behind the Scenes' },
+    { src: video8757, type: 'video' as const, title: 'Concert Moment' },
+    { src: img4892, type: 'image' as const, title: 'On Stage' },
+    { src: video2691, type: 'video' as const, title: 'Live Show' },
+    { src: img4936, type: 'image' as const, title: 'Stage Presence' },
+    { src: video3401, type: 'video' as const, title: 'Event Performance' },
+    { src: img5114, type: 'image' as const, title: 'Performing Live' },
+    { src: video3522, type: 'video' as const, title: 'Stage Action' },
+    { src: img5115, type: 'image' as const, title: 'Concert Photo' },
+    { src: video5030, type: 'video' as const, title: 'Show Highlight' },
+    { src: img5117, type: 'image' as const, title: 'Performance Shot' },
+    { src: video9166, type: 'video' as const, title: 'Live Moment' },
+    { src: img4583, type: 'image' as const, title: 'Stage Energy' },
+    { src: img2210, type: 'image' as const, title: 'Live Event' },
+    { src: img2211, type: 'image' as const, title: 'Performance' },
+    { src: img3118, type: 'image' as const, title: 'Concert Vibes' },
+    { src: img3127, type: 'image' as const, title: 'On Stage' },
+    { src: img3130, type: 'image' as const, title: 'Show Time' },
+    { src: img4613, type: 'image' as const, title: 'Stage Moment' },
+    { src: img4615, type: 'image' as const, title: 'Live Performance' },
+    { src: img4893, type: 'image' as const, title: 'Concert Night' },
+    { src: img4598, type: 'image' as const, title: 'Performing' },
+    { src: img1415, type: 'image' as const, title: 'Event Photo' },
+    { src: img2607, type: 'image' as const, title: 'Backstage' },
+    { src: img2608, type: 'image' as const, title: 'Behind Scenes' },
+    { src: img2762, type: 'image' as const, title: 'Preparation' },
+    { src: img3112, type: 'image' as const, title: 'Getting Ready' },
+    { src: img3125, type: 'image' as const, title: 'Backstage Moment' },
+    { src: img4148, type: 'image' as const, title: 'Pre-Show' },
+    { src: img5429, type: 'image' as const, title: 'Portrait' },
+    { src: img8121, type: 'image' as const, title: 'Photo Shoot' }
+  ];
+
+  const galleryItems = allGalleryItems.slice(0, 6);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -460,13 +533,15 @@ export default function Home() {
 
             <div className="relative">
               <div className="aspect-square bg-gradient-to-br from-gray-800 to-red-900 rounded-2xl overflow-hidden relative group">
-                <div className="absolute inset-0 bg-black/20"></div>
-                <div className="w-full h-full flex items-center justify-center text-white/70 relative z-10">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">🎤</div>
-                    <div className="text-xl font-semibold">Marcos Kennedy</div>
-                    <div className="text-sm text-gray-300">The Weeknd Tribute</div>
-                  </div>
+                <img
+                  src={img4541}
+                  alt="Marcos Kennedy"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
+                  <div className="text-2xl font-bold text-white mb-1">Marcos Kennedy</div>
+                  <div className="text-sm text-gray-200">The Weeknd Tribute</div>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-red-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </div>
@@ -527,8 +602,7 @@ export default function Home() {
                 <Mic className="w-10 h-10 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-3">{t.services.live.title}</h3>
-              <p className="text-gray-300 mb-4">{t.services.live.desc}</p>
-              <div className="text-red-500 font-bold text-lg">{t.services.live.price}</div>
+              <p className="text-gray-300">{t.services.live.desc}</p>
             </div>
 
             <div className="bg-black/50 border border-red-900/30 rounded-2xl p-6 hover:border-red-500/50 transition-all group hover:transform hover:scale-105">
@@ -536,8 +610,7 @@ export default function Home() {
                 <Heart className="w-10 h-10 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-3">{t.services.private.title}</h3>
-              <p className="text-gray-300 mb-4">{t.services.private.desc}</p>
-              <div className="text-red-500 font-bold text-lg">{t.services.private.price}</div>
+              <p className="text-gray-300">{t.services.private.desc}</p>
             </div>
 
             <div className="bg-black/50 border border-red-900/30 rounded-2xl p-6 hover:border-red-500/50 transition-all group hover:transform hover:scale-105">
@@ -545,9 +618,15 @@ export default function Home() {
                 <Camera className="w-10 h-10 text-red-500 group-hover:animate-glow" />
               </div>
               <h3 className="text-xl font-bold text-red-500 mb-3">{t.services.meetgreet.title}</h3>
-              <p className="text-gray-300 mb-4">{t.services.meetgreet.desc}</p>
-              <div className="text-red-500 font-bold text-lg">{t.services.meetgreet.price}</div>
+              <p className="text-gray-300">{t.services.meetgreet.desc}</p>
             </div>
+          </div>
+
+          {/* CTA after services */}
+          <div className="text-center mt-12 bg-gradient-to-r from-red-900/20 to-black rounded-2xl p-8">
+            <p className="text-lg sm:text-xl text-gray-300 mb-6">
+              {t.cta.subtitle}
+            </p>
           </div>
         </div>
       </section>
@@ -560,56 +639,57 @@ export default function Home() {
             <p className="text-lg sm:text-xl text-gray-300">{t.gallery.subtitle}</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            {[
-              { type: 'stage', title: 'Live Concert' },
-              { type: 'studio', title: 'Studio Session' },
-              { type: 'event', title: 'Private Event' },
-              { type: 'meetgreet', title: 'Meet & Greet' },
-              { type: 'backstage', title: 'Backstage' },
-              { type: 'performance', title: 'On Stage' },
-              { type: 'crowd', title: 'With Fans' },
-              { type: 'setup', title: 'Sound Check' }
-            ].map((item, index) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+            {galleryItems.map((item, index) => (
               <div
                 key={index}
-                className="aspect-square bg-gradient-to-br from-gray-800 via-gray-700 to-red-900 rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer group relative"
+                onClick={() => setSelectedMedia(item)}
+                className="aspect-square rounded-xl overflow-hidden hover:scale-105 transition-all cursor-pointer group relative"
               >
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
-                <div className="w-full h-full flex flex-col items-center justify-center text-white/80 relative z-10">
-                  <div className="mb-3">
-                    {item.type === 'stage' && <Mic className="w-8 h-8 text-red-400" />}
-                    {item.type === 'studio' && <Play className="w-8 h-8 text-red-400" />}
-                    {item.type === 'event' && <Users className="w-8 h-8 text-red-400" />}
-                    {item.type === 'meetgreet' && <Camera className="w-8 h-8 text-red-400" />}
-                    {item.type === 'backstage' && <Star className="w-8 h-8 text-red-400" />}
-                    {item.type === 'performance' && <Heart className="w-8 h-8 text-red-400" />}
-                    {item.type === 'crowd' && <Users className="w-8 h-8 text-red-400" />}
-                    {item.type === 'setup' && <Calendar className="w-8 h-8 text-red-400" />}
-                  </div>
-                  <div className="text-sm font-medium text-center px-2">{item.title}</div>
-                  <div className="text-xs text-gray-300 mt-1">Marcos Kennedy</div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-red-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                {/* Fake play button for video previews */}
-                {['studio', 'stage', 'performance'].includes(item.type) && (
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="w-12 h-12 bg-red-500/80 rounded-full flex items-center justify-center">
-                      <Play className="w-6 h-6 text-white ml-1" />
+                {item.type === 'image' ? (
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="relative w-full h-full">
+                    <video
+                      src={item.src}
+                      className="w-full h-full object-cover"
+                      muted
+                      playsInline
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                      <div className="w-12 h-12 bg-red-500/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Play className="w-6 h-6 text-white ml-1" />
+                      </div>
                     </div>
                   </div>
                 )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                    <div className="text-sm font-medium text-white">{item.title}</div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
           {/* View All Gallery Button */}
           <div className="text-center mt-12">
-            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 group">
+            <button
+              onClick={() => {
+                navigate('/gallery');
+                setTimeout(() => window.scrollTo(0, 0), 100);
+              }}
+              className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 group"
+            >
               <div className="flex items-center justify-center space-x-2">
-                <Camera className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                <span>View Full Gallery</span>
+                <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+                </svg>
+                <span>View Full Gallery ({allGalleryItems.length} items)</span>
               </div>
             </button>
           </div>
@@ -708,12 +788,6 @@ export default function Home() {
                 >
                   <Play className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
                 </a>
-                <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
-                  <Mic className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-                </div>
-                <div className="w-10 h-10 bg-gradient-to-r from-red-600 to-red-500 rounded-full flex items-center justify-center hover:from-red-500 hover:to-red-400 transition-all transform hover:scale-110 cursor-pointer group">
-                  <Heart className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-                </div>
               </div>
             </div>
           </div>
@@ -724,6 +798,44 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Media Modal */}
+      {selectedMedia && (
+        <div
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedMedia(null)}
+        >
+          <div className="relative max-w-5xl max-h-[90vh] w-full">
+            {selectedMedia.type === 'image' ? (
+              <img
+                src={selectedMedia.src}
+                alt={selectedMedia.title}
+                className="max-w-full max-h-[90vh] object-contain mx-auto"
+                onClick={(e) => e.stopPropagation()}
+              />
+            ) : (
+              <video
+                src={selectedMedia.src}
+                controls
+                autoPlay
+                className="max-w-full max-h-[90vh] object-contain mx-auto"
+                onClick={(e) => e.stopPropagation()}
+              />
+            )}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-xl font-semibold bg-black/50 px-6 py-2 rounded-full">
+              {selectedMedia.title}
+            </div>
+            <button
+              onClick={() => setSelectedMedia(null)}
+              className="absolute top-4 right-4 text-white hover:text-red-500 transition-colors"
+            >
+              <div className="w-10 h-10 bg-black/50 rounded-full flex items-center justify-center hover:bg-red-500/20">
+                <span className="text-2xl">&times;</span>
+              </div>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

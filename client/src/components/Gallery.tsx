@@ -1,60 +1,88 @@
 import { useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import heroImage from '@assets/generated_images/Hero_performance_photo_491c1e0f.png';
-import concertImage from '@assets/generated_images/Concert_stage_performance_42515ff2.png';
-import backstageImage from '@assets/generated_images/Behind_the_scenes_ff9f0668.png';
-import aboutImage from '@assets/generated_images/Professional_headshot_portrait_44efe930.png';
+
+// Import real photos and videos
+import img0210 from "@assets/Foto's en video's/IMG_0210.JPG";
+import img1415 from "@assets/Foto's en video's/IMG_1415.PNG";
+import img2210 from "@assets/Foto's en video's/IMG_2210.JPG";
+import img2211 from "@assets/Foto's en video's/IMG_2211.JPG";
+import img2607 from "@assets/Foto's en video's/IMG_2607.JPG";
+import img2608 from "@assets/Foto's en video's/IMG_2608.JPG";
+import img2762 from "@assets/Foto's en video's/IMG_2762.JPG";
+import img3112 from "@assets/Foto's en video's/IMG_3112.JPG";
+import img3118 from "@assets/Foto's en video's/IMG_3118.JPG";
+import img3125 from "@assets/Foto's en video's/IMG_3125.JPG";
+import img3127 from "@assets/Foto's en video's/IMG_3127.JPG";
+import img3130 from "@assets/Foto's en video's/IMG_3130.JPG";
+import img4028 from "@assets/Foto's en video's/IMG_4028.JPG";
+import img4148 from "@assets/Foto's en video's/IMG_4148.JPG";
+import img4541 from "@assets/Foto's en video's/IMG_4541.JPG";
+import img4583 from "@assets/Foto's en video's/IMG_4583.JPG";
+import img4598 from "@assets/Foto's en video's/IMG_4598.JPG";
+import img4613 from "@assets/Foto's en video's/IMG_4613.JPG";
+import img4615 from "@assets/Foto's en video's/IMG_4615.JPG";
+import img4892 from "@assets/Foto's en video's/IMG_4892.JPG";
+import img4893 from "@assets/Foto's en video's/IMG_4893.PNG";
+import img4936 from "@assets/Foto's en video's/IMG_4936.JPG";
+import img5114 from "@assets/Foto's en video's/IMG_5114.JPG";
+import img5115 from "@assets/Foto's en video's/IMG_5115.JPG";
+import img5117 from "@assets/Foto's en video's/IMG_5117.JPG";
+import img5429 from "@assets/Foto's en video's/IMG_5429.JPEG.jpg";
+import img8121 from "@assets/Foto's en video's/IMG_8121.JPG";
+
+// Import videos
+import video2691 from "@assets/Foto's en video's/IMG_2691.MOV";
+import video3401 from "@assets/Foto's en video's/IMG_3401.MOV";
+import video3522 from "@assets/Foto's en video's/IMG_3522.MOV";
+import video5030 from "@assets/Foto's en video's/IMG_5030.MOV";
+import video8754 from "@assets/Foto's en video's/IMG_8754.MOV";
+import video8755 from "@assets/Foto's en video's/IMG_8755.MOV";
+import video8756 from "@assets/Foto's en video's/IMG_8756.MOV";
+import video8757 from "@assets/Foto's en video's/IMG_8757.MOV";
+import video9166 from "@assets/Foto's en video's/IMG_9166.MOV";
 
 export default function Gallery() {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', title: string} | null>(null);
+  const [showAll, setShowAll] = useState(false);
 
-  // Todo: remove mock functionality - replace with real gallery images
-  const galleryImages = [
-    {
-      id: 1,
-      src: heroImage,
-      title: "Live Performance",
-      category: "concert"
-    },
-    {
-      id: 2,
-      src: concertImage,
-      title: "Stage Show",
-      category: "concert"
-    },
-    {
-      id: 3,
-      src: aboutImage,
-      title: "Professional Portrait",
-      category: "portrait"
-    },
-    {
-      id: 4,
-      src: backstageImage,
-      title: "Behind the Scenes",
-      category: "backstage"
-    },
-    {
-      id: 5,
-      src: heroImage,
-      title: "Event Performance",
-      category: "concert"
-    },
-    {
-      id: 6,
-      src: concertImage,
-      title: "Venue Show",
-      category: "concert"
-    }
+  const galleryItems = [
+    { id: 1, src: video8754, type: 'video' as const, title: "Live Performance", category: "concert" },
+    { id: 2, src: img0210, type: 'image' as const, title: "Stage Show", category: "concert" },
+    { id: 3, src: video8755, type: 'video' as const, title: "Event Performance", category: "concert" },
+    { id: 4, src: img4541, type: 'image' as const, title: "Professional Portrait", category: "portrait" },
+    { id: 5, src: video8756, type: 'video' as const, title: "Venue Show", category: "concert" },
+    { id: 6, src: img4028, type: 'image' as const, title: "Behind the Scenes", category: "backstage" },
+    { id: 7, src: video8757, type: 'video' as const, title: "Concert Moment", category: "concert" },
+    { id: 8, src: img4892, type: 'image' as const, title: "On Stage", category: "concert" },
+    { id: 9, src: video2691, type: 'video' as const, title: "Performance Highlight", category: "concert" },
+    { id: 10, src: img4936, type: 'image' as const, title: "Stage Presence", category: "concert" },
+    { id: 11, src: video3401, type: 'video' as const, title: "Live Show", category: "concert" },
+    { id: 12, src: img5114, type: 'image' as const, title: "Performing", category: "concert" },
+    { id: 13, src: video3522, type: 'video' as const, title: "Stage Performance", category: "concert" },
+    { id: 14, src: img5115, type: 'image' as const, title: "Concert Photo", category: "concert" },
+    { id: 15, src: video5030, type: 'video' as const, title: "Event Highlight", category: "concert" },
+    { id: 16, src: img5117, type: 'image' as const, title: "Performance Shot", category: "concert" },
+    { id: 17, src: video9166, type: 'video' as const, title: "Show Moment", category: "concert" },
+    { id: 18, src: img4583, type: 'image' as const, title: "Stage Energy", category: "concert" },
+    { id: 19, src: img2210, type: 'image' as const, title: "Live Event", category: "concert" },
+    { id: 20, src: img3118, type: 'image' as const, title: "Concert Vibes", category: "concert" },
+    { id: 21, src: img4613, type: 'image' as const, title: "Performance", category: "concert" },
+    { id: 22, src: img4893, type: 'image' as const, title: "Show Time", category: "concert" },
+    { id: 23, src: img1415, type: 'image' as const, title: "Event Photo", category: "backstage" },
+    { id: 24, src: img2607, type: 'image' as const, title: "Backstage", category: "backstage" },
+    { id: 25, src: img3125, type: 'image' as const, title: "Prep Time", category: "backstage" },
+    { id: 26, src: img4148, type: 'image' as const, title: "Getting Ready", category: "backstage" }
   ];
 
-  const openLightbox = (imageSrc: string) => {
-    setSelectedImage(imageSrc);
+  const displayedItems = showAll ? galleryItems : galleryItems.slice(0, 6);
+
+  const openLightbox = (item: {src: string, type: 'image' | 'video', title: string}) => {
+    setSelectedMedia(item);
   };
 
   const closeLightbox = () => {
-    setSelectedImage(null);
+    setSelectedMedia(null);
   };
 
   return (
@@ -66,35 +94,51 @@ export default function Gallery() {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-primary to-destructive mx-auto mb-6"></div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto" data-testid="text-gallery-description">
-            Experience the energy and professionalism of Marcos Kennedy's Weeknd tribute performances 
+            Experience the energy and professionalism of Marcos Kennedy's Weeknd tribute performances
             through these captured moments from venues and events.
           </p>
         </div>
 
         {/* Gallery Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {galleryImages.map((image) => (
-            <Card 
-              key={image.id} 
+          {displayedItems.map((item) => (
+            <Card
+              key={item.id}
               className="group overflow-hidden hover-elevate cursor-pointer"
-              onClick={() => openLightbox(image.src)}
-              data-testid={`gallery-item-${image.id}`}
+              onClick={() => openLightbox(item)}
+              data-testid={`gallery-item-${item.id}`}
             >
               <div className="relative aspect-square overflow-hidden">
-                <img 
-                  src={image.src}
-                  alt={image.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+                {item.type === 'image' ? (
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="relative w-full h-full">
+                    <video
+                      src={item.src}
+                      className="w-full h-full object-cover"
+                      muted
+                      playsInline
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                      <div className="bg-primary/90 rounded-full p-4 group-hover:scale-110 transition-transform">
+                        <i className="fas fa-play text-white text-2xl ml-1"></i>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-white font-semibold text-lg mb-2" data-testid={`text-image-title-${image.id}`}>
-                      {image.title}
+                    <h3 className="text-white font-semibold text-lg mb-2" data-testid={`text-image-title-${item.id}`}>
+                      {item.title}
                     </h3>
                     <div className="flex items-center justify-between">
                       <span className="text-primary text-sm capitalize">
-                        <i className="fas fa-tag mr-1"></i>
-                        {image.category}
+                        <i className={`fas ${item.type === 'video' ? 'fa-video' : 'fa-tag'} mr-1`}></i>
+                        {item.category}
                       </span>
                       <i className="fas fa-expand text-white text-lg"></i>
                     </div>
@@ -105,48 +149,78 @@ export default function Gallery() {
           ))}
         </div>
 
+        {/* View Full Gallery Button */}
+        {!showAll && galleryItems.length > 6 && (
+          <div className="text-center mb-12">
+            <Button
+              size="lg"
+              onClick={() => setShowAll(true)}
+              className="bg-gradient-to-r from-primary to-destructive hover:from-primary/90 hover:to-destructive/90"
+              data-testid="button-view-full-gallery"
+            >
+              <i className="fas fa-images mr-2"></i>
+              View Full Gallery ({galleryItems.length} items)
+            </Button>
+          </div>
+        )}
+
         {/* CTA Section */}
         <div className="text-center">
           <p className="text-gray-400 mb-6">
             Want to see more? Follow on social media for the latest performance updates.
           </p>
           <div className="flex justify-center space-x-4">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
-              onClick={() => console.log('Instagram clicked')}
+              onClick={() => window.open('https://www.instagram.com/marcoskennedy16', '_blank')}
               data-testid="button-instagram"
             >
               <i className="fab fa-instagram mr-2"></i>
               Instagram
             </Button>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="lg"
-              onClick={() => console.log('YouTube clicked')}
-              data-testid="button-youtube"
+              onClick={() => window.open('https://www.tiktok.com/@marcos.twd', '_blank')}
+              data-testid="button-tiktok"
             >
-              <i className="fab fa-youtube mr-2"></i>
-              YouTube
+              <i className="fab fa-tiktok mr-2"></i>
+              TikTok
             </Button>
           </div>
         </div>
       </div>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+      {selectedMedia && (
+        <div
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
           onClick={closeLightbox}
           data-testid="lightbox-overlay"
         >
-          <div className="relative max-w-4xl max-h-full">
-            <img 
-              src={selectedImage}
-              alt="Gallery Image"
-              className="max-w-full max-h-full object-contain"
-              data-testid="lightbox-image"
-            />
+          <div className="relative max-w-5xl max-h-[90vh] w-full">
+            {selectedMedia.type === 'image' ? (
+              <img
+                src={selectedMedia.src}
+                alt={selectedMedia.title}
+                className="max-w-full max-h-[90vh] object-contain mx-auto"
+                data-testid="lightbox-image"
+                onClick={(e) => e.stopPropagation()}
+              />
+            ) : (
+              <video
+                src={selectedMedia.src}
+                controls
+                autoPlay
+                className="max-w-full max-h-[90vh] object-contain mx-auto"
+                data-testid="lightbox-video"
+                onClick={(e) => e.stopPropagation()}
+              />
+            )}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-xl font-semibold bg-black/50 px-6 py-2 rounded-full">
+              {selectedMedia.title}
+            </div>
             <Button
               variant="ghost"
               size="icon"

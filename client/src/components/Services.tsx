@@ -9,12 +9,10 @@ export default function Services() {
     }
   };
 
-  // Todo: remove mock functionality - replace with real pricing and services
   const services = [
     {
       title: "Private Events",
       icon: "fas fa-users",
-      price: "From $2,500",
       duration: "1-2 Hours",
       features: [
         "Full Weeknd tribute performance",
@@ -28,8 +26,7 @@ export default function Services() {
     {
       title: "Corporate Events",
       icon: "fas fa-building",
-      price: "From $4,000",
-      duration: "2-3 Hours", 
+      duration: "2-3 Hours",
       features: [
         "Premium production value",
         "Extended performance time",
@@ -42,7 +39,6 @@ export default function Services() {
     {
       title: "Venue Shows",
       icon: "fas fa-music",
-      price: "Custom Quote",
       duration: "Full Show",
       features: [
         "Complete concert experience",
@@ -115,10 +111,7 @@ export default function Services() {
                 <CardTitle className="text-xl text-white" data-testid={`text-service-title-${index}`}>
                   {service.title}
                 </CardTitle>
-                <div className="text-2xl font-bold text-primary mt-2" data-testid={`text-service-price-${index}`}>
-                  {service.price}
-                </div>
-                <div className="text-gray-400 text-sm" data-testid={`text-service-duration-${index}`}>
+                <div className="text-gray-400 text-sm mt-2" data-testid={`text-service-duration-${index}`}>
                   {service.duration}
                 </div>
               </CardHeader>
@@ -178,21 +171,31 @@ export default function Services() {
         {/* CTA Section */}
         <div className="text-center bg-gradient-to-r from-primary/20 to-destructive/20 rounded-2xl p-8">
           <h3 className="text-2xl font-bold text-white mb-4">
-            Ready to Book Your Event?
+            Ready to Book?
           </h3>
           <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-            Get a custom quote for your event. Every performance is tailored to create 
-            an unforgettable Weeknd experience for your audience.
+            Contact us today to discuss your event and get a personalized quote.
           </p>
-          <Button 
-            size="lg"
-            onClick={scrollToContact}
-            className="bg-gradient-to-r from-primary to-destructive hover:from-primary/90 hover:to-destructive/90"
-            data-testid="button-get-quote"
-          >
-            <i className="fas fa-envelope mr-2"></i>
-            Get Custom Quote
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              onClick={scrollToContact}
+              className="bg-gradient-to-r from-primary to-destructive hover:from-primary/90 hover:to-destructive/90"
+              data-testid="button-get-quote"
+            >
+              <i className="fas fa-envelope mr-2"></i>
+              Contact Us
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => window.location.href = 'tel:+31612345678'}
+              data-testid="button-call-now"
+            >
+              <i className="fas fa-phone mr-2"></i>
+              Call Now
+            </Button>
+          </div>
         </div>
       </div>
     </section>

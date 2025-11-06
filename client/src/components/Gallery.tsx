@@ -114,6 +114,8 @@ export default function Gallery() {
                     src={item.src}
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div className="relative w-full h-full">
@@ -122,6 +124,7 @@ export default function Gallery() {
                       className="w-full h-full object-cover"
                       muted
                       playsInline
+                      preload="none"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                       <div className="bg-primary/90 rounded-full p-4 group-hover:scale-110 transition-transform">
@@ -207,6 +210,8 @@ export default function Gallery() {
                 className="max-w-full max-h-[90vh] object-contain mx-auto"
                 data-testid="lightbox-image"
                 onClick={(e) => e.stopPropagation()}
+                loading="eager"
+                decoding="async"
               />
             ) : (
               <video

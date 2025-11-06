@@ -131,6 +131,8 @@ export default function FullGallery() {
                     src={item.src}
                     alt={item.title}
                     className="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div className="relative w-full h-full">
@@ -139,6 +141,7 @@ export default function FullGallery() {
                       className="w-full h-full object-cover"
                       muted
                       playsInline
+                      preload="none"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                       <div className="w-12 h-12 bg-red-500/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -173,6 +176,8 @@ export default function FullGallery() {
                 alt={selectedMedia.title}
                 className="max-w-full max-h-[90vh] object-contain mx-auto"
                 onClick={(e) => e.stopPropagation()}
+                loading="eager"
+                decoding="async"
               />
             ) : (
               <video

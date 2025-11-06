@@ -40,11 +40,13 @@ export default function About() {
           {/* Image */}
           <div className="relative">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-              <img 
+              <img
                 src={aboutImage}
                 alt="Marcos Kennedy - The Weeknd Tribute Artist"
                 className="w-full h-96 lg:h-[500px] object-cover"
                 data-testid="img-about-photo"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
             </div>

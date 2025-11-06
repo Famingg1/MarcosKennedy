@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { ChevronDown, Star, Mic, Users, Play, Camera, Calendar, Heart } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Import all photos and videos
 import img0210 from "@assets/Foto's en video's/IMG_0210.JPG";
@@ -254,7 +255,7 @@ const translations = {
 export default function Home() {
   const [, navigate] = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('en');
+  const { currentLang, setCurrentLang } = useLanguage();
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', title: string} | null>(null);
 
@@ -364,7 +365,7 @@ export default function Home() {
                 )}
               </div>
 
-              <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 py-2 rounded-full transition-all transform hover:scale-105">
+              <button onClick={() => navigate('/quote')} className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 py-2 rounded-full transition-all transform hover:scale-105">
                 {t.nav.bookNow}
               </button>
             </div>
@@ -463,13 +464,13 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
+            <button onClick={() => navigate('/quote')} className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
               <div className="flex items-center justify-center space-x-2">
                 <Play className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.hero.bookPerformance}</span>
               </div>
             </button>
-            <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group">
+            <button onClick={() => navigate('/gallery')} className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group">
               <div className="flex items-center justify-center space-x-2">
                 <Camera className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.hero.watchDemo}</span>
@@ -723,7 +724,7 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
+            <button onClick={() => navigate('/quote')} className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 hover:shadow-[0_20px_40px_rgba(220,38,38,0.4)] group">
               <div className="flex items-center justify-center space-x-2">
                 <Calendar className="w-5 h-5 group-hover:scale-110 transition-transform" />
                 <span>{t.cta.getQuote}</span>
@@ -756,15 +757,15 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">info@marcoskennedy.com</span>
+                  <a href="mailto:info@marcoskennedy.com" className="text-gray-300 hover:text-red-400 transition-colors">info@marcoskennedy.com</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">+31 6 XX XX XX XX</span>
+                  <a href="tel:+31614871373" className="text-gray-300 hover:text-red-400 transition-colors">+31 6 14871373</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Available Worldwide</span>
+                  <span className="text-gray-300">Beschikbaar Wereldwijd</span>
                 </div>
               </div>
             </div>

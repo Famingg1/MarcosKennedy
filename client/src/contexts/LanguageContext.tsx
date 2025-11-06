@@ -11,7 +11,6 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [currentLang, setCurrentLangState] = useState<Language>('nl');
-  const [isLoaded, setIsLoaded] = useState(false);
 
   // Load language from localStorage on mount
   useEffect(() => {
@@ -19,7 +18,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     if (savedLang && ['en', 'nl', 'pt'].includes(savedLang)) {
       setCurrentLangState(savedLang);
     }
-    setIsLoaded(true);
   }, []);
 
   // Save language to localStorage when it changes
@@ -27,10 +25,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setCurrentLangState(lang);
     localStorage.setItem('language', lang);
   };
-
-  if (!isLoaded) {
-    return <>{children}</>;
-  }
 
   return (
     <LanguageContext.Provider value={{ currentLang, setCurrentLang }}>

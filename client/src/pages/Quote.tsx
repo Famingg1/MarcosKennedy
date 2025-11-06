@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { ChevronDown, Phone, Mail, Star, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const translations = {
   en: {
@@ -30,7 +31,7 @@ const translations = {
         eventDate: "Preferred Event Date",
         eventDatePlaceholder: "Select a date",
         location: "Location/Venue",
-        locationPlaceholder: "City or Venue Name",
+        locationPlaceholder: "City or Venue Name (optional: Company)",
         guestCount: "Estimated Guest Count",
         guestCountPlaceholder: "How many guests?",
         message: "Additional Details",
@@ -122,7 +123,7 @@ const translations = {
 export default function Quote() {
   const [, navigate] = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentLang, setCurrentLang] = useState('nl');
+  const { currentLang, setCurrentLang } = useLanguage();
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);

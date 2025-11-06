@@ -4,7 +4,8 @@
       "Bash(npm run dev:*)",
       "Bash(lsof:*)",
       "Bash(netstat:*)",
-      "Bash(killall:*)"
+      "Bash(killall:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

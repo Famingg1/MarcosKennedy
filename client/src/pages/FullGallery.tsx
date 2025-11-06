@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // Import all photos and videos
 import img0210 from "@assets/Foto's en video's/IMG_0210.JPG";
@@ -39,9 +40,30 @@ import video8756 from "@assets/Foto's en video's/IMG_8756.MOV";
 import video8757 from "@assets/Foto's en video's/IMG_8757.MOV";
 import video9166 from "@assets/Foto's en video's/IMG_9166.MOV";
 
+const translations = {
+  en: {
+    title: "Full Gallery",
+    subtitle: "All photos and videos from performances and events",
+    items: "items"
+  },
+  nl: {
+    title: "Volledige Galerij",
+    subtitle: "Alle foto's en video's van optredens en evenementen",
+    items: "items"
+  },
+  pt: {
+    title: "Galeria Completa",
+    subtitle: "Todas as fotos e vídeos de apresentações e eventos",
+    items: "itens"
+  }
+};
+
 export default function FullGallery() {
   const [, navigate] = useLocation();
+  const { currentLang } = useLanguage();
   const [selectedMedia, setSelectedMedia] = useState<{src: string, type: 'image' | 'video', title: string} | null>(null);
+
+  const t = translations[currentLang as keyof typeof translations];
 
   // Scroll to top when component loads
   useEffect(() => {
@@ -101,7 +123,7 @@ export default function FullGallery() {
               <span className="text-xl font-bold">MARCOS KENNEDY</span>
             </button>
             <div className="text-gray-400">
-              {allGalleryItems.length} items
+              {allGalleryItems.length} {t.items}
             </div>
           </div>
         </div>
@@ -112,10 +134,10 @@ export default function FullGallery() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 sm:mb-16">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-red-500 mb-4">
-              Full Gallery
+              {t.title}
             </h1>
             <p className="text-lg sm:text-xl text-gray-300">
-              All photos and videos from performances and events
+              {t.subtitle}
             </p>
           </div>
 
@@ -138,10 +160,10 @@ export default function FullGallery() {
                   <div className="relative w-full h-full">
                     <video
                       src={item.src}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover bg-black"
                       muted
                       playsInline
-                      preload="none"
+                      preload="metadata"
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                       <div className="w-12 h-12 bg-red-500/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -184,7 +206,8 @@ export default function FullGallery() {
                 src={selectedMedia.src}
                 controls
                 autoPlay
-                className="max-w-full max-h-[90vh] object-contain mx-auto"
+                preload="auto"
+                className="max-w-full max-h-[90vh] object-contain mx-auto bg-black"
                 onClick={(e) => e.stopPropagation()}
               />
             )}

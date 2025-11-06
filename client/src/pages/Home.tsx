@@ -730,12 +730,10 @@ export default function Home() {
                 <span>{t.cta.getQuote}</span>
               </div>
             </button>
-            <button className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group">
-              <div className="flex items-center justify-center space-x-2">
-                <Mic className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                <span>{t.cta.call}</span>
-              </div>
-            </button>
+            <a href="tel:+31614871373" className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group inline-flex items-center justify-center space-x-2">
+              <Mic className="w-5 h-5 group-hover:scale-110 transition-transform" />
+              <span>{t.cta.call}</span>
+            </a>
           </div>
         </div>
       </section>

@@ -1,5 +1,16 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { currentLang } = useLanguage();
+
+  const translations = {
+    en: { availableWorldwide: 'Available Worldwide' },
+    nl: { availableWorldwide: 'Beschikbaar Wereldwijd' },
+    pt: { availableWorldwide: 'Disponível em Todo o Mundo' }
+  };
+
+  const t = translations[currentLang as keyof typeof translations];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -114,7 +125,7 @@ export default function Footer() {
               </a>
               <div className="text-gray-400">
                 <i className="fas fa-map-marker-alt mr-2"></i>
-                Available Worldwide
+                {t.availableWorldwide}
               </div>
             </div>
           </div>

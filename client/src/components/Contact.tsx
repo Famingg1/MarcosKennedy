@@ -4,9 +4,20 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Contact() {
   const { toast } = useToast();
+  const { currentLang } = useLanguage();
+
+  const translations = {
+    en: { availableWorldwide: 'Available Worldwide' },
+    nl: { availableWorldwide: 'Beschikbaar Wereldwijd' },
+    pt: { availableWorldwide: 'Disponível em Todo o Mundo' }
+  };
+
+  const t = translations[currentLang as keyof typeof translations];
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -68,7 +79,7 @@ export default function Contact() {
     {
       icon: 'fas fa-map-marker-alt',
       title: 'Location',
-      value: 'Available Worldwide',
+      value: t.availableWorldwide,
       link: null
     },
     {

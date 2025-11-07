@@ -110,6 +110,9 @@ const translations = {
       subtitle: "Contact us today to discuss your event and get a personalized quote.",
       getQuote: "Get quote",
       call: "Call"
+    },
+    footer: {
+      availableWorldwide: "Available Worldwide"
     }
   },
   nl: {
@@ -179,6 +182,9 @@ const translations = {
       subtitle: "Neem vandaag contact met ons op om je evenement te bespreken en een persoonlijke offerte te krijgen.",
       getQuote: "Krijg offerte",
       call: "Bel"
+    },
+    footer: {
+      availableWorldwide: "Beschikbaar Wereldwijd"
     }
   },
   pt: {
@@ -248,6 +254,9 @@ const translations = {
       subtitle: "Entre em contato conosco hoje para discutir seu evento e obter uma cotação personalizada.",
       getQuote: "Obter cotação",
       call: "Ligue"
+    },
+    footer: {
+      availableWorldwide: "Disponível em Todo o Mundo"
     }
   }
 };
@@ -763,7 +772,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Beschikbaar Wereldwijd</span>
+                  <span className="text-gray-300">{t.footer.availableWorldwide}</span>
                 </div>
               </div>
             </div>

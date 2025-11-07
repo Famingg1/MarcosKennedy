@@ -40,6 +40,9 @@ const translations = {
         submitting: "Sending...",
         success: "Quote request sent successfully! We'll be in touch soon."
       }
+    },
+    footer: {
+      availableWorldwide: "Available Worldwide"
     }
   },
   nl: {
@@ -78,6 +81,9 @@ const translations = {
         submitting: "Verzenden...",
         success: "Offerte aanvraag succesvol verzonden! We nemen binnenkort contact op."
       }
+    },
+    footer: {
+      availableWorldwide: "Beschikbaar Wereldwijd"
     }
   },
   pt: {
@@ -116,6 +122,9 @@ const translations = {
         submitting: "Enviando...",
         success: "Solicitação de cotação enviada com sucesso! Entraremos em contato em breve."
       }
+    },
+    footer: {
+      availableWorldwide: "Disponível em Todo o Mundo"
     }
   }
 };
@@ -485,7 +494,7 @@ export default function Quote() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <span className="text-gray-300">Beschikbaar Wereldwijd</span>
+                  <span className="text-gray-300">{t.footer.availableWorldwide}</span>
                 </div>
               </div>
             </div>

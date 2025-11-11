@@ -157,17 +157,27 @@ export default function FullGallery() {
                     decoding="async"
                   />
                 ) : (
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full bg-gray-900">
                     <video
                       src={item.src}
-                      className="w-full h-full object-cover bg-black"
+                      className="w-full h-full object-cover"
                       muted
                       playsInline
                       preload="metadata"
+                      onError={(e) => {
+                        console.error('Video failed to load:', item.src);
+                        e.currentTarget.style.display = 'none';
+                      }}
+                      onLoadStart={(e) => {
+                        e.currentTarget.style.opacity = '0.5';
+                      }}
+                      onLoadedData={(e) => {
+                        e.currentTarget.style.opacity = '1';
+                      }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <div className="w-12 h-12 bg-red-500/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none">
+                      <div className="w-16 h-16 bg-red-500/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M8 5v14l11-7z"/>
                         </svg>
                       </div>
@@ -203,12 +213,18 @@ export default function FullGallery() {
               />
             ) : (
               <video
+                key={selectedMedia.src}
                 src={selectedMedia.src}
                 controls
                 autoPlay
                 preload="auto"
+                playsInline
                 className="max-w-full max-h-[90vh] object-contain mx-auto bg-black"
                 onClick={(e) => e.stopPropagation()}
+                onError={(e) => {
+                  console.error('Modal video failed to load:', selectedMedia.src);
+                  e.currentTarget.poster = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23111" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23ef4444" font-family="sans-serif" font-size="18"%3EVideo kon niet worden geladen%3C/text%3E%3C/svg%3E';
+                }}
               />
             )}
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-xl font-semibold bg-black/50 px-6 py-2 rounded-full">

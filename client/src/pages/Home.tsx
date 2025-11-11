@@ -113,6 +113,10 @@ const translations = {
     },
     footer: {
       availableWorldwide: "Available Worldwide"
+    },
+    contact: {
+      phone: "+31614871373",
+      phoneDisplay: "+31 6 14871373"
     }
   },
   nl: {
@@ -185,6 +189,10 @@ const translations = {
     },
     footer: {
       availableWorldwide: "Beschikbaar Wereldwijd"
+    },
+    contact: {
+      phone: "+31614871373",
+      phoneDisplay: "+31 6 14871373"
     }
   },
   pt: {
@@ -257,6 +265,10 @@ const translations = {
     },
     footer: {
       availableWorldwide: "Disponível em Todo o Mundo"
+    },
+    contact: {
+      phone: "+5521974922020",
+      phoneDisplay: "+55 21 97492-2020"
     }
   }
 };
@@ -423,40 +435,16 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-red-900/10 to-black"></div>
-
-        {/* Animated Stars Background */}
-        <div className="absolute inset-0 opacity-40">
-          {[...Array(50)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute animate-pulse"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 3}s`
-              }}
-            >
-              <Star className="w-2 h-2 text-red-500 animate-twinkle" />
-            </div>
-          ))}
-
-          {/* Larger moving stars */}
-          {[...Array(10)].map((_, i) => (
-            <div
-              key={`large-${i}`}
-              className="absolute animate-bounce"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${4 + Math.random() * 4}s`
-              }}
-            >
-              <Star className="w-3 h-3 text-red-400/60" />
-            </div>
-          ))}
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <img
+            src={img3118}
+            alt="Marcos Kennedy Performance"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-red-900/30 via-transparent to-red-900/30"></div>
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6">
@@ -663,16 +651,27 @@ export default function Home() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full bg-gray-900">
                     <video
                       src={item.src}
                       className="w-full h-full object-cover"
                       muted
                       playsInline
+                      preload="metadata"
+                      onError={(e) => {
+                        console.error('Video failed to load:', item.src);
+                        e.currentTarget.style.display = 'none';
+                      }}
+                      onLoadStart={(e) => {
+                        e.currentTarget.style.opacity = '0.5';
+                      }}
+                      onLoadedData={(e) => {
+                        e.currentTarget.style.opacity = '1';
+                      }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <div className="w-12 h-12 bg-red-500/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Play className="w-6 h-6 text-white ml-1" />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none">
+                      <div className="w-16 h-16 bg-red-500/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                        <Play className="w-8 h-8 text-white ml-1" />
                       </div>
                     </div>
                   </div>
@@ -739,7 +738,7 @@ export default function Home() {
                 <span>{t.cta.getQuote}</span>
               </div>
             </button>
-            <a href="tel:+31614871373" className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group inline-flex items-center justify-center space-x-2">
+            <a href={`tel:${t.contact.phone}`} className="border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold transition-all transform hover:scale-105 group inline-flex items-center justify-center space-x-2">
               <Mic className="w-5 h-5 group-hover:scale-110 transition-transform" />
               <span>{t.cta.call}</span>
             </a>
@@ -768,7 +767,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <a href="tel:+31614871373" className="text-gray-300 hover:text-red-400 transition-colors">+31 6 14871373</a>
+                  <a href={`tel:${t.contact.phone}`} className="text-gray-300 hover:text-red-400 transition-colors">{t.contact.phoneDisplay}</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
@@ -823,11 +822,18 @@ export default function Home() {
               />
             ) : (
               <video
+                key={selectedMedia.src}
                 src={selectedMedia.src}
                 controls
                 autoPlay
-                className="max-w-full max-h-[90vh] object-contain mx-auto"
+                preload="auto"
+                playsInline
+                className="max-w-full max-h-[90vh] object-contain mx-auto bg-black"
                 onClick={(e) => e.stopPropagation()}
+                onError={(e) => {
+                  console.error('Modal video failed to load:', selectedMedia.src);
+                  e.currentTarget.poster = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23111" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23ef4444" font-family="sans-serif" font-size="18"%3EVideo could not be loaded%3C/text%3E%3C/svg%3E';
+                }}
               />
             )}
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-xl font-semibold bg-black/50 px-6 py-2 rounded-full">

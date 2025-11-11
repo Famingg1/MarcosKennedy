@@ -43,6 +43,10 @@ const translations = {
     },
     footer: {
       availableWorldwide: "Available Worldwide"
+    },
+    contact: {
+      phone: "+31614871373",
+      phoneDisplay: "+31 6 14871373"
     }
   },
   nl: {
@@ -84,6 +88,10 @@ const translations = {
     },
     footer: {
       availableWorldwide: "Beschikbaar Wereldwijd"
+    },
+    contact: {
+      phone: "+31614871373",
+      phoneDisplay: "+31 6 14871373"
     }
   },
   pt: {
@@ -125,6 +133,10 @@ const translations = {
     },
     footer: {
       availableWorldwide: "Disponível em Todo o Mundo"
+    },
+    contact: {
+      phone: "+5521974922020",
+      phoneDisplay: "+55 21 97492-2020"
     }
   }
 };
@@ -295,8 +307,8 @@ export default function Quote() {
                   <h3 className="text-lg font-semibold text-white mb-1">
                     {t.quote.phone}
                   </h3>
-                  <a href="tel:+31614871373" className="text-xl font-bold text-red-500 hover:text-red-400 transition-colors">
-                    +31 6 14871373
+                  <a href={`tel:${t.contact.phone}`} className="text-xl font-bold text-red-500 hover:text-red-400 transition-colors">
+                    {t.contact.phoneDisplay}
                   </a>
                   <p className="text-sm text-gray-400 mt-1">Available for calls and WhatsApp</p>
                 </div>
@@ -323,7 +335,7 @@ export default function Quote() {
                   {currentLang === 'nl' ? 'Voor het snelste antwoord, bel of stuur ons direct een bericht!' : currentLang === 'pt' ? 'Para a resposta mais rápida, ligue ou envie mensagem diretamente!' : 'For the quickest response, call or text us directly!'}
                 </p>
                 <a
-                  href="tel:+31614871373"
+                  href={`tel:${t.contact.phone}`}
                   className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 px-6 py-3 rounded-full font-semibold transition-all transform hover:scale-105"
                 >
                   <Phone className="w-5 h-5" />
@@ -490,7 +502,7 @@ export default function Quote() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-                  <a href="tel:+31614871373" className="text-gray-300 hover:text-red-400 transition-colors">+31 6 14871373</a>
+                  <a href={`tel:${t.contact.phone}`} className="text-gray-300 hover:text-red-400 transition-colors">{t.contact.phoneDisplay}</a>
                 </div>
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 bg-red-500 rounded-full"></div>

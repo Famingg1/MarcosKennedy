@@ -118,16 +118,26 @@ export default function Gallery() {
                     decoding="async"
                   />
                 ) : (
-                  <div className="relative w-full h-full">
+                  <div className="relative w-full h-full bg-gray-900">
                     <video
                       src={item.src}
                       className="w-full h-full object-cover"
                       muted
                       playsInline
-                      preload="none"
+                      preload="metadata"
+                      onError={(e) => {
+                        console.error('Video failed to load:', item.src);
+                        e.currentTarget.style.display = 'none';
+                      }}
+                      onLoadStart={(e) => {
+                        e.currentTarget.style.opacity = '0.5';
+                      }}
+                      onLoadedData={(e) => {
+                        e.currentTarget.style.opacity = '1';
+                      }}
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                      <div className="bg-primary/90 rounded-full p-4 group-hover:scale-110 transition-transform">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/40 pointer-events-none">
+                      <div className="bg-primary/90 rounded-full p-4 group-hover:scale-110 transition-transform shadow-lg">
                         <i className="fas fa-play text-white text-2xl ml-1"></i>
                       </div>
                     </div>
@@ -215,12 +225,19 @@ export default function Gallery() {
               />
             ) : (
               <video
+                key={selectedMedia.src}
                 src={selectedMedia.src}
                 controls
                 autoPlay
-                className="max-w-full max-h-[90vh] object-contain mx-auto"
+                preload="auto"
+                playsInline
+                className="max-w-full max-h-[90vh] object-contain mx-auto bg-black"
                 data-testid="lightbox-video"
                 onClick={(e) => e.stopPropagation()}
+                onError={(e) => {
+                  console.error('Modal video failed to load:', selectedMedia.src);
+                  e.currentTarget.poster = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect fill="%23111" width="400" height="300"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%23ef4444" font-family="sans-serif" font-size="18"%3EVideo could not be loaded%3C/text%3E%3C/svg%3E';
+                }}
               />
             )}
             <div className="absolute top-4 left-1/2 transform -translate-x-1/2 text-white text-xl font-semibold bg-black/50 px-6 py-2 rounded-full">

@@ -42,7 +42,13 @@ const translations = {
       }
     },
     footer: {
-      availableWorldwide: "Available Worldwide"
+      availableWorldwide: "Available Worldwide",
+      links: "Links",
+      home: "Home",
+      gallery: "Gallery",
+      copyright: "© 2024 Marcos Kennedy. All rights reserved.",
+      tagline: "The Ultimate Weeknd Experience",
+      description: "Authentic tribute performances worldwide"
     },
     contact: {
       phone: "+31614871373",
@@ -87,7 +93,13 @@ const translations = {
       }
     },
     footer: {
-      availableWorldwide: "Beschikbaar Wereldwijd"
+      availableWorldwide: "Beschikbaar Wereldwijd",
+      links: "Links",
+      home: "Home",
+      gallery: "Galerij",
+      copyright: "© 2024 Marcos Kennedy. Alle rechten voorbehouden.",
+      tagline: "De Ultieme Weeknd Ervaring",
+      description: "Authentieke tributeoptredens wereldwijd"
     },
     contact: {
       phone: "+31614871373",
@@ -132,7 +144,13 @@ const translations = {
       }
     },
     footer: {
-      availableWorldwide: "Disponível em Todo o Mundo"
+      availableWorldwide: "Disponível em Todo o Mundo",
+      links: "Links",
+      home: "Início",
+      gallery: "Galeria",
+      copyright: "© 2024 Marcos Kennedy. Todos os direitos reservados.",
+      tagline: "A Definitiva Experiência Weeknd",
+      description: "Performances tribute autênticas em todo o mundo"
     },
     contact: {
       phone: "+5521974922020",
@@ -487,9 +505,9 @@ export default function Quote() {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-8">
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-red-500 mb-3 sm:mb-4">MARCOS KENNEDY</h3>
-              <p className="text-sm sm:text-base text-gray-300">The Ultimate Weeknd Experience</p>
+              <p className="text-sm sm:text-base text-gray-300">{t.footer.tagline}</p>
               <p className="text-sm text-gray-400 mt-2">
-                Authentieke tributeoptredens wereldwijd
+                {t.footer.description}
               </p>
             </div>
 
@@ -512,17 +530,17 @@ export default function Quote() {
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold text-white mb-4">Links</h4>
+              <h4 className="text-lg font-semibold text-white mb-4">{t.footer.links}</h4>
               <div className="space-y-2">
-                <button onClick={() => navigate('/')} className="block text-gray-300 hover:text-red-400 transition-colors text-sm">Home</button>
-                <button onClick={() => navigate('/gallery')} className="block text-gray-300 hover:text-red-400 transition-colors text-sm">Galerij</button>
+                <button onClick={() => navigate('/')} className="block text-gray-300 hover:text-red-400 transition-colors text-sm">{t.footer.home}</button>
+                <button onClick={() => navigate('/gallery')} className="block text-gray-300 hover:text-red-400 transition-colors text-sm">{t.footer.gallery}</button>
               </div>
             </div>
           </div>
 
           <div className="border-t border-red-900/30 pt-6 text-center">
             <p className="text-gray-500 text-xs">
-              © 2024 Marcos Kennedy. Alle rechten voorbehouden.
+              {t.footer.copyright}
             </p>
           </div>
         </div>

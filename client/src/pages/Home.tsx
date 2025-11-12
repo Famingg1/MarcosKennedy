@@ -16,6 +16,7 @@ import img3118 from "@assets/Foto's en video's/IMG_3118.JPG";
 import img3125 from "@assets/Foto's en video's/IMG_3125.JPG";
 import img3127 from "@assets/Foto's en video's/IMG_3127.JPG";
 import img3130 from "@assets/Foto's en video's/IMG_3130.JPG";
+import img8068 from "@assets/Foto's en video's/IMG_8068.JPG";
 import img4028 from "@assets/Foto's en video's/IMG_4028.JPG";
 import img4148 from "@assets/Foto's en video's/IMG_4148.JPG";
 import img4541 from "@assets/Foto's en video's/IMG_4541.JPG";
@@ -438,7 +439,7 @@ export default function Home() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
           <img
-            src={img3118}
+            src={img8068}
             alt="Marcos Kennedy Performance"
             className="w-full h-full object-cover"
             loading="eager"

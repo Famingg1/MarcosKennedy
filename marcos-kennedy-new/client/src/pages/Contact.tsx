@@ -23,10 +23,10 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     eventType: '',
     eventDate: '',
     guestCount: '',
+    location: '',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
@@ -86,10 +86,10 @@ export default function Contact() {
         setFormData({
           name: '',
           email: '',
-          phone: '',
           eventType: '',
           eventDate: '',
           guestCount: '',
+          location: '',
           message: '',
         })
       } else {
@@ -281,20 +281,6 @@ export default function Contact() {
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
-                          <label htmlFor="phone" className="block text-white/80 text-sm font-medium mb-2">
-                            {t.contact.form.phone}
-                          </label>
-                          <input
-                            type="tel"
-                            id="phone"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition-all"
-                            placeholder={t.contact.form.phonePlaceholder}
-                          />
-                        </div>
-                        <div>
                           <label htmlFor="eventType" className="block text-white/80 text-sm font-medium mb-2">
                             {t.contact.form.eventType} *
                           </label>
@@ -314,34 +300,51 @@ export default function Contact() {
                             ))}
                           </select>
                         </div>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="eventDate" className="block text-white/80 text-sm font-medium mb-2">
-                            {t.contact.form.eventDate}
+                            {t.contact.form.eventDate} *
                           </label>
                           <input
                             type="date"
                             id="eventDate"
                             name="eventDate"
+                            required
                             value={formData.eventDate}
                             onChange={handleChange}
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition-all"
                           />
                         </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="guestCount" className="block text-white/80 text-sm font-medium mb-2">
-                            {t.contact.form.guestCount}
+                            {t.contact.form.guestCount} *
                           </label>
                           <input
                             type="text"
                             id="guestCount"
                             name="guestCount"
+                            required
                             value={formData.guestCount}
                             onChange={handleChange}
                             className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition-all"
                             placeholder={t.contact.form.guestCountPlaceholder}
+                          />
+                        </div>
+                        <div>
+                          <label htmlFor="location" className="block text-white/80 text-sm font-medium mb-2">
+                            {t.contact.form.location} *
+                          </label>
+                          <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            required
+                            value={formData.location}
+                            onChange={handleChange}
+                            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-brand-primary focus:ring-1 focus:ring-brand-primary outline-none transition-all"
+                            placeholder={t.contact.form.locationPlaceholder}
                           />
                         </div>
                       </div>

@@ -1,57 +1,20 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Users, Mic2, Calendar, Globe, Award, Star, ArrowRight, CheckCircle2 } from 'lucide-react'
-
-const stats = [
-  { icon: Users, value: '1M+', label: 'Social media volgers' },
-  { icon: Mic2, value: '500+', label: 'Succesvolle shows' },
-  { icon: Calendar, value: '5+', label: 'Jaar actief' },
-  { icon: Globe, value: '15+', label: 'Landen bezocht' },
-]
-
-const highlights = [
-  'Opgetreden op internationale festivals en grote venues',
-  'Verschenen op Braziliaanse nationale televisie',
-  'Gewonnen prijzen als beste tribute artiest',
-  'Samengewerkt met bekende eventorganisatoren',
-  'Opgebouwd publiek van meer dan 1 miljoen volgers',
-  'Uitgevoerd voor bedrijven, bruiloften en privéfeesten',
-]
-
-const timeline = [
-  {
-    year: '2019',
-    title: 'Het begin',
-    description: 'Eerste optredens als The Weeknd tribute artiest in lokale clubs en evenementen.',
-  },
-  {
-    year: '2020',
-    title: 'Online groei',
-    description: 'Explosieve groei op sociale media met virale video\'s die miljoenen views behaalden.',
-  },
-  {
-    year: '2021',
-    title: 'Internationale doorbraak',
-    description: 'Eerste internationale boekingen en optredens in meerdere Europese landen.',
-  },
-  {
-    year: '2022',
-    title: 'TV-optredens',
-    description: 'Verschenen op nationale televisie in Brazilië en andere grote mediaplatforms.',
-  },
-  {
-    year: '2023',
-    title: 'Wereldwijde erkenning',
-    description: 'Erkend als een van de beste The Weeknd tribute artiesten ter wereld.',
-  },
-  {
-    year: '2024+',
-    title: 'Blijven groeien',
-    description: 'Continu nieuwe shows, samenwerkingen en steeds grotere events.',
-  },
-]
+import { useLanguage } from '../contexts/LanguageContext'
 
 export default function About() {
+  const { t } = useLanguage()
+
+  const stats = [
+    { icon: Users, value: '1M+', labelKey: 'followers' as const },
+    { icon: Mic2, value: '500+', labelKey: 'shows' as const },
+    { icon: Calendar, value: '5+', labelKey: 'years' as const },
+    { icon: Globe, value: '15+', labelKey: 'countries' as const },
+  ]
+
+  const timelineYears = ['2019', '2020', '2021', '2022', '2023', '2024'] as const
+
   return (
     <>
       {/* Hero Section */}
@@ -67,12 +30,12 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <span className="text-brand-primary font-medium mb-4 block">Over mij</span>
+            <span className="text-brand-primary font-medium mb-4 block">{t.aboutPage.heroLabel}</span>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Marcos Kennedy
             </h1>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
-              De meest authentieke The Weeknd tribute ervaring ter wereld.
+              {t.aboutPage.heroSubtitle}
             </p>
           </motion.div>
         </div>
@@ -109,7 +72,7 @@ export default function About() {
                       <Star key={i} className="w-5 h-5 fill-brand-primary text-brand-primary" />
                     ))}
                   </div>
-                  <span className="text-white font-medium">500+ succesvolle shows</span>
+                  <span className="text-white font-medium">500+ {t.aboutPage.successfulShows}</span>
                 </div>
               </div>
             </motion.div>
@@ -121,24 +84,12 @@ export default function About() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-white mb-6">
-                De ultieme <span className="text-gradient">The Weeknd ervaring</span>
+                {t.aboutPage.mainTitle} <span className="text-gradient">{t.aboutPage.mainTitleHighlight}</span>
               </h2>
               <div className="space-y-4 text-white/70 text-lg leading-relaxed">
-                <p>
-                  Marcos Kennedy is de meest authentieke The Weeknd tribute artiest ter wereld.
-                  Met zijn opvallende gelijkenis, perfecte vocalen en authentieke podiumaanwezigheid
-                  brengt hij de magie van The Weeknd tot leven op elk evenement.
-                </p>
-                <p>
-                  Wat begon als een passie voor de muziek van The Weeknd is uitgegroeid tot een
-                  internationale carrière met optredens in meer dan 15 landen. Van intieme privéfeesten
-                  tot grote festivals en TV-shows - Marcos levert altijd een onvergetelijke ervaring.
-                </p>
-                <p>
-                  Met meer dan 1 miljoen volgers op sociale media en honderden succesvolle shows
-                  achter zijn naam, is Marcos Kennedy de eerste keuze voor organisatoren die op
-                  zoek zijn naar de ultieme The Weeknd tribute.
-                </p>
+                <p>{t.aboutPage.paragraph1}</p>
+                <p>{t.aboutPage.paragraph2}</p>
+                <p>{t.aboutPage.paragraph3}</p>
               </div>
             </motion.div>
           </div>
@@ -153,7 +104,7 @@ export default function About() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <motion.div
-                key={stat.label}
+                key={stat.labelKey}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -164,7 +115,7 @@ export default function About() {
                   <stat.icon className="w-8 h-8 text-brand-primary" />
                 </div>
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</div>
-                <div className="text-white/60">{stat.label}</div>
+                <div className="text-white/60">{t.aboutPage.stats[stat.labelKey]}</div>
               </motion.div>
             ))}
           </div>
@@ -184,12 +135,12 @@ export default function About() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl font-bold text-white mb-6">
-                Highlights & <span className="text-gradient">prestaties</span>
+                {t.aboutPage.highlightsTitle} <span className="text-gradient">{t.aboutPage.highlightsTitleHighlight}</span>
               </h2>
               <div className="space-y-4">
-                {highlights.map((highlight, index) => (
+                {t.aboutPage.highlights.map((highlight, index) => (
                   <motion.div
-                    key={highlight}
+                    key={index}
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
@@ -230,9 +181,9 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <span className="text-brand-primary font-medium mb-4 block">Mijn reis</span>
+              <span className="text-brand-primary font-medium mb-4 block">{t.aboutPage.timelineLabel}</span>
               <h2 className="text-4xl font-bold text-white">
-                De <span className="text-gradient">tijdlijn</span>
+                {t.aboutPage.timelineTitle} <span className="text-gradient">{t.aboutPage.timelineTitleHighlight}</span>
               </h2>
             </motion.div>
           </div>
@@ -240,28 +191,33 @@ export default function About() {
           <div className="relative">
             <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-brand-primary/30" />
 
-            {timeline.map((item, index) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`relative flex items-center gap-8 mb-12 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-20 md:pl-0`}>
-                  <span className="text-brand-primary font-bold text-lg">{item.year}</span>
-                  <h3 className="text-xl font-bold text-white mt-1">{item.title}</h3>
-                  <p className="text-white/60 mt-2">{item.description}</p>
-                </div>
+            {timelineYears.map((year, index) => {
+              const item = t.aboutPage.timeline[year]
+              if (!item) return null
 
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-brand-primary -translate-x-1/2 ring-4 ring-[#0A0F1A]" />
+              return (
+                <motion.div
+                  key={year}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className={`relative flex items-center gap-8 mb-12 ${
+                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
+                >
+                  <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'} pl-20 md:pl-0`}>
+                    <span className="text-brand-primary font-bold text-lg">{year === '2024' ? '2024+' : year}</span>
+                    <h3 className="text-xl font-bold text-white mt-1">{item.title}</h3>
+                    <p className="text-white/60 mt-2">{item.description}</p>
+                  </div>
 
-                <div className="flex-1 hidden md:block" />
-              </motion.div>
-            ))}
+                  <div className="absolute left-8 md:left-1/2 w-4 h-4 rounded-full bg-brand-primary -translate-x-1/2 ring-4 ring-[#0A0F1A]" />
+
+                  <div className="flex-1 hidden md:block" />
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -278,17 +234,16 @@ export default function About() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold text-white mb-6">
-              Boek Marcos voor jouw evenement
+              {t.aboutPage.ctaTitle}
             </h2>
             <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
-              Klaar om de ultieme The Weeknd ervaring naar jouw evenement te brengen?
-              Neem vandaag contact op voor een vrijblijvende offerte.
+              {t.aboutPage.ctaSubtitle}
             </p>
             <Link
               to="/contact"
               className="bg-white text-brand-primary font-semibold px-8 py-4 rounded-full hover:bg-white/90 transition-all inline-flex items-center gap-2 hover:scale-105 shadow-xl"
             >
-              <span>Neem contact op</span>
+              <span>{t.aboutPage.ctaButton}</span>
               <ArrowRight size={20} />
             </Link>
           </motion.div>

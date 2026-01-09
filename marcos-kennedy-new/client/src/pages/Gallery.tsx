@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Play, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useLanguage } from '../contexts/LanguageContext'
 
 const images = [
   { src: '/images/IMG_4541.webp', alt: 'Red suit performance', category: 'performance' },
@@ -23,32 +24,33 @@ const images = [
   { src: '/images/IMG_3130.webp', alt: 'Event photo', category: 'event' },
 ]
 
-const videos = [
-  { src: '/videos/IMG_3522.mp4', thumbnail: '/images/IMG_4541.webp', title: 'Live performance highlight' },
-  { src: '/videos/IMG_2691.mp4', thumbnail: '/images/IMG_4892.webp', title: 'Concert footage' },
-  { src: '/videos/IMG_8754.mp4', thumbnail: '/images/IMG_3118.webp', title: 'Show recap' },
-  { src: '/videos/IMG_5030.mp4', thumbnail: '/images/IMG_4613.webp', title: 'Stage performance' },
-  { src: '/videos/IMG_3401.mp4', thumbnail: '/images/IMG_8068.webp', title: 'Behind the scenes' },
-  { src: '/videos/IMG_8755.mp4', thumbnail: '/images/IMG_3127.webp', title: 'Fan moments' },
-  { src: '/videos/IMG_8756.mp4', thumbnail: '/images/IMG_4598.webp', title: 'Live show moments' },
-  { src: '/videos/IMG_8757.mp4', thumbnail: '/images/IMG_5114.webp', title: 'Performance highlights' },
-  { src: '/videos/IMG_9166.mp4', thumbnail: '/images/IMG_4936.webp', title: 'Event footage' },
-]
-
-const categories = [
-  { id: 'all', name: 'Alles' },
-  { id: 'performance', name: 'Optredens' },
-  { id: 'portrait', name: 'Portretten' },
-  { id: 'event', name: 'Evenementen' },
-]
-
 export default function Gallery() {
+  const { t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [videoLightboxOpen, setVideoLightboxOpen] = useState(false)
-  const [currentVideo, setCurrentVideo] = useState<typeof videos[0] | null>(null)
+  const [currentVideo, setCurrentVideo] = useState<{ src: string; thumbnail: string; titleKey: keyof typeof t.galleryPage.videoTitles } | null>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+
+  const videos = [
+    { src: '/videos/IMG_3522.mp4', thumbnail: '/images/IMG_4541.webp', titleKey: 'liveHighlight' as const },
+    { src: '/videos/IMG_2691.mp4', thumbnail: '/images/IMG_4892.webp', titleKey: 'concertFootage' as const },
+    { src: '/videos/IMG_8754.mp4', thumbnail: '/images/IMG_3118.webp', titleKey: 'showRecap' as const },
+    { src: '/videos/IMG_5030.mp4', thumbnail: '/images/IMG_4613.webp', titleKey: 'stagePerformance' as const },
+    { src: '/videos/IMG_3401.mp4', thumbnail: '/images/IMG_8068.webp', titleKey: 'behindScenes' as const },
+    { src: '/videos/IMG_8755.mp4', thumbnail: '/images/IMG_3127.webp', titleKey: 'fanMoments' as const },
+    { src: '/videos/IMG_8756.mp4', thumbnail: '/images/IMG_4598.webp', titleKey: 'liveShowMoments' as const },
+    { src: '/videos/IMG_8757.mp4', thumbnail: '/images/IMG_5114.webp', titleKey: 'performanceHighlights' as const },
+    { src: '/videos/IMG_9166.mp4', thumbnail: '/images/IMG_4936.webp', titleKey: 'eventFootage' as const },
+  ]
+
+  const categories = [
+    { id: 'all', nameKey: 'all' as const },
+    { id: 'performance', nameKey: 'performance' as const },
+    { id: 'portrait', nameKey: 'portrait' as const },
+    { id: 'event', nameKey: 'event' as const },
+  ]
 
   const filteredImages = selectedCategory === 'all'
     ? images
@@ -107,12 +109,12 @@ export default function Gallery() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <span className="text-brand-primary font-medium mb-4 block">Portfolio</span>
+            <span className="text-brand-primary font-medium mb-4 block">{t.galleryPage.heroLabel}</span>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              <span className="text-gradient">Galerij</span>
+              <span className="text-gradient">{t.galleryPage.heroTitle}</span>
             </h1>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
-              Een selectie van foto's en video's van optredens, evenementen en behind-the-scenes momenten.
+              {t.galleryPage.heroSubtitle}
             </p>
           </motion.div>
         </div>
@@ -137,7 +139,7 @@ export default function Gallery() {
                   boxShadow: selectedCategory === cat.id ? '0 4px 20px rgba(225, 29, 72, 0.3)' : 'none'
                 }}
               >
-                {cat.name}
+                {t.galleryPage.categories[cat.nameKey]}
               </button>
             ))}
           </div>
@@ -151,7 +153,7 @@ export default function Gallery() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
             <span className="w-1 h-8 bg-brand-primary rounded-full" />
-            <span className="text-gradient">Foto's</span>
+            <span className="text-gradient">{t.galleryPage.photos}</span>
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -190,7 +192,7 @@ export default function Gallery() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
             <span className="w-1 h-8 bg-brand-primary rounded-full" />
-            <span className="text-gradient">Video's</span>
+            <span className="text-gradient">{t.galleryPage.videos}</span>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -206,7 +208,7 @@ export default function Gallery() {
                 {/* Thumbnail */}
                 <img
                   src={video.thumbnail}
-                  alt={video.title}
+                  alt={t.galleryPage.videoTitles[video.titleKey]}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
 
@@ -222,7 +224,7 @@ export default function Gallery() {
 
                 {/* Title */}
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <span className="text-white font-medium text-sm md:text-base">{video.title}</span>
+                  <span className="text-white font-medium text-sm md:text-base">{t.galleryPage.videoTitles[video.titleKey]}</span>
                 </div>
               </motion.div>
             ))}
@@ -242,10 +244,10 @@ export default function Gallery() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Wil je meer zien?
+              {t.galleryPage.cta.title}
             </h2>
             <p className="text-white/90 text-lg max-w-xl mx-auto mb-8">
-              Volg Marcos Kennedy op social media voor de nieuwste updates, behind-the-scenes en meer!
+              {t.galleryPage.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -254,7 +256,7 @@ export default function Gallery() {
                 rel="noopener noreferrer"
                 className="bg-white text-brand-primary font-semibold px-8 py-4 rounded-full hover:bg-white/90 transition-all inline-flex items-center justify-center gap-2 hover:scale-105 shadow-xl"
               >
-                Volg op Instagram
+                {t.galleryPage.cta.instagram}
               </a>
               <a
                 href="https://www.tiktok.com/@marcos.twd"
@@ -262,7 +264,7 @@ export default function Gallery() {
                 rel="noopener noreferrer"
                 className="border-2 border-white text-white font-semibold px-8 py-4 rounded-full hover:bg-white/10 transition-all inline-flex items-center justify-center gap-2"
               >
-                Volg op TikTok
+                {t.galleryPage.cta.tiktok}
               </a>
             </div>
           </motion.div>
@@ -345,7 +347,7 @@ export default function Gallery() {
             >
               {/* Title at top */}
               <div className="mb-4 px-6 py-2 bg-[#1a1a1a]/90 rounded-full backdrop-blur-sm">
-                <h3 className="text-white text-lg font-medium">{currentVideo.title}</h3>
+                <h3 className="text-white text-lg font-medium">{t.galleryPage.videoTitles[currentVideo.titleKey]}</h3>
               </div>
 
               {/* Video in portrait format */}
